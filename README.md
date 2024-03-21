@@ -3,8 +3,9 @@ CS Music player Promo
 
 To Do List 
 - [x] complete the childTemplate
-- [ ] complete nav in index.html
-- [ ] start the devoloper page
+- [x] complete nav in index.html
+- [x] start the devoloper page
 - [ ] work on features page
 - [ ] finish home page
-- [ ] start an extra page
+- [x] start an music included
+- [x] finish music included
