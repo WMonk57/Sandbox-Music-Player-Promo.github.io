@@ -9,3 +9,6 @@ To Do List
 - [ ] finish home page
 - [x] start an music included
 - [x] finish music included
+- [x] finish the developer page 
+- [ ] add a picture to show cool feature on feature page
+- [ ] add content to home page maybe adds for music player.
