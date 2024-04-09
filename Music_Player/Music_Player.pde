@@ -6,6 +6,10 @@ float rewindX, rewindY, rewindWidth, rewindHeight;
 float fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight;
 float startX, startY, startWidth, startHeight;
 float settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight;
+float songBarThingX, songBarThingY,songBarThingWidth, songBarThingHeight;
+float exitX, exitY, exitWidth, exitHeight;
+float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
+float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 //
 void setup() {
  println("HelloWorld");
@@ -37,42 +41,58 @@ albumCoverWidth = appWidth*8/10;
 albumCoverHeight = appHeight*7/11;
 rewindX = appWidth*4/14;
 rewindY = appHeight*10/12;
-rewindWidth = appWidth*1/14;
+rewindWidth = appWidth*0.75/14;
 rewindHeight = appHeight*1/12;
 fastForwardX = appWidth*9/14;
 fastForwardY =  appHeight*10/12;
-fastForwardWidth = appWidth*1/14;
+fastForwardWidth = appWidth*0.75/14;
 fastForwardHeight = appHeight*1/12;
 startX = appWidth*6.5/14;
 startY =  appHeight*10/12; 
-startWidth = appWidth*1/14;
+startWidth = appWidth*0.75/14;
 startHeight = appHeight*1/12;
 settingsGearX =appWidth*12/14; 
 settingsGearY = appHeight*10/12;
-settingsGearWidth = appWidth*1/14;
+settingsGearWidth = appWidth*0.75/14;
 settingsGearHeight = appHeight*1/12;
+songBarThingX = appWidth*2/10;
+songBarThingY  = appHeight*8.5/11;
+songBarThingWidth = appWidth*6/10;
+songBarThingHeight = appHeight*0.5/11;
+exitX = appWidth*9.25/10;
+exitY  = appHeight*0.25/10;
+exitWidth = appWidth*0.75/14;
+exitHeight = appHeight*1/12;
+currentSongX =appWidth*2.5/10; 
+currentSongY  = appHeight*0.15/11;
+currentSongWidth = appWidth*6/14;
+currentSongHeight = appHeight*0.5/12;
+timeLeftX = appWidth*0;
+timeLeftY  = appHeight*0;
+timeLeftWidth = appWidth*0;
+timeLeftHeight = appHeight*0;
 //
 //Layout DIVs
 //rect(X, Y, Width, Height); 
-rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight); 
-int centerX= appWidth *1/2;
-int centerY= appHeight *1/2;
-rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
+//rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight); 
+//int centerX= appWidth *1/2;
+//int centerY= appHeight *1/2;
+//rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
 
 rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight); 
-
 rect(rewindX, rewindY, rewindWidth, rewindHeight);
 rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight); 
 rect(startX, startY, startWidth, startHeight); 
 rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
+rect(songBarThingX, songBarThingY,songBarThingWidth, songBarThingHeight); 
+rect(exitX, exitY, exitWidth, exitHeight); 
+rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
+rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight); 
 /*
-rect(stopX, stopY, stopWidth, stopHeight); 
-rect(titleX, titleY, titleWidth, titleHeight); 
 rect(visuaLine2X, visuaLine2Y, visuaLine2Width, visuaLine2Height); 
 rect(visualLine1X, visualLine1Y, visualLine1Width, visualLine1Height); 
-rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight); 
 rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight); 
-rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
+rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
 */
 } //End setup
 //
