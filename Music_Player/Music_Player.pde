@@ -10,6 +10,7 @@ float songBarThingX, songBarThingY,songBarThingWidth, songBarThingHeight;
 float exitX, exitY, exitWidth, exitHeight;
 float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
+float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 //
 void setup() {
  println("HelloWorld");
@@ -67,10 +68,14 @@ currentSongX =appWidth*2.5/10;
 currentSongY  = appHeight*0.15/11;
 currentSongWidth = appWidth*6/14;
 currentSongHeight = appHeight*0.5/12;
-timeLeftX = appWidth*0;
-timeLeftY  = appHeight*0;
-timeLeftWidth = appWidth*0;
-timeLeftHeight = appHeight*0;
+timeLeftX = appWidth*8.25/10;
+timeLeftY  = appHeight*8.5/11;
+timeLeftWidth = appWidth*.75/10;
+timeLeftHeight = appHeight*0.5/11;
+volumeBarX = appWidth*0.5/15;
+volumeBarY  = appHeight*1/11;
+volumeBarWidth = appWidth*0.5/15;
+volumeBarHeight = appHeight*7/11;
 //
 //Layout DIVs
 //rect(X, Y, Width, Height); 
@@ -88,11 +93,13 @@ rect(songBarThingX, songBarThingY,songBarThingWidth, songBarThingHeight);
 rect(exitX, exitY, exitWidth, exitHeight); 
 rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
 rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight); 
-/*
-rect(visuaLine2X, visuaLine2Y, visuaLine2Width, visuaLine2Height); 
-rect(visualLine1X, visualLine1Y, visualLine1Width, visualLine1Height); 
-rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight); 
 rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
+/*
+rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight); 
+rect(nextSongAlbumCoverX, nextSongAlbumCoverY, nextSongAlbumCoverWidth, nextSongAlbumCoverHeight);
+rect(nextSongBoxPopUpThingX, nextSongBoxPopUpThingY, nextSongBoxPopUpThingWidth, nextSongBoxPopUpThingHeight);
+rect(nextSongLengthX, nextSongLengthY, nextSongLengthWidth, nextSongLengthHeight);
+rect(closeNextSongX, closeNextSongY, closeNextSongWidth, closeNextSongHeight); 
 */
 } //End setup
 //
