@@ -5,10 +5,10 @@ To Do List
 - [x] complete the childTemplate
 - [x] complete nav in index.html
 - [x] start the devoloper page
-- [ ] work on features page
-- [ ] finish home page
+- [x] work on features page
+- [x] finish home page
 - [x] start an music included
 - [x] finish music included
 - [x] finish the developer page 
 - [ ] add a picture to show cool feature on feature page
-- [ ] add content to home page maybe adds for music player.
+- [x] add content to home page maybe adds for music player.
