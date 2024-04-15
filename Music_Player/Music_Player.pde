@@ -15,6 +15,7 @@ float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 color backgroundColor;
 color whiteBackground;
 color darkBackground;
+boolean whiteMode = false;
   //
   void setup() {
   println("HelloWorld");
@@ -108,14 +109,15 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
   // var Populataition
   darkBackground = 0; //Gray Scale, much smaller than COLOR
   whiteBackground = 255; // Gray Scale, much smaller than COLOR
-  if ( hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
+  //whiteMode = true; //must ask to see blue light 
+  if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
   if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
 } //End setup
 //
 void draw() {
   background(backgroundColor); //grayscale
-  // rect(exitX, exitY, exitWidth, exitHeight);
+  rect(exitX, exitY, exitWidth, exitHeight);
 } //End draw
 //
 void keyPressed() {
