@@ -15,6 +15,10 @@ float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 color backgroundColor;
 color whiteBackground;
 color darkBackground;
+color Aqua=#0AF5EF;
+color Orange=#FF4400;
+color Black = #000000;
+color foregroundColor;
 boolean whiteMode = false;
   //
   void setup() {
@@ -107,23 +111,38 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
    rect(closeNextSongX, closeNextSongY, closeNextSongWidth, closeNextSongHeight);
    */
   // var Populataition
-  darkBackground = 0; //Gray Scale, much smaller than COLOR
-  whiteBackground = 255; // Gray Scale, much smaller than COLOR
-  //whiteMode = true; //must ask to see blue light 
-  if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
-  if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
+ // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
+  //if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
+  if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
+  backgroundColor = whiteBackground;
+  foregroundColor = #0AF5EF;
+  } else {
+    backgroundColor = darkBackground;
+    foregroundColor = #FF4400;
+  if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
+  
+  }
+  //
 } //End setup
 //
 void draw() {
   background(backgroundColor); //grayscale
+  fill(foregroundColor);
   rect(exitX, exitY, exitWidth, exitHeight);
+  println (mouseX, mouseY);
 } //End draw
 //
-void keyPressed() {
+void keyPressed() {        //Listener
+ if (key=='X' || key=='x') exit();
+ if (key==CODED && keyCode==ESC) exit();
 } //End keyPressed
 //
-void mousePressed() {
+void mousePressed() {      //Listener
+ 
+if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight ) {    
+  exit();
+}
 } //End mousePressed
 //
 // End MAIN Program
