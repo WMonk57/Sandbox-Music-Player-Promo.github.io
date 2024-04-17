@@ -114,7 +114,7 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
  // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
   //if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
-  if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
+  if ( whiteMode==false && hour()>=8 && hour()<=21 ) {
   backgroundColor = whiteBackground;
   foregroundColor = #0AF5EF;
   } else {
@@ -130,12 +130,13 @@ void draw() {
   background(backgroundColor); //grayscale
   fill(foregroundColor);
   rect(exitX, exitY, exitWidth, exitHeight);
-  println (mouseX, mouseY);
+  
 } //End draw
 //
 void keyPressed() {        //Listener
  if (key=='X' || key=='x') exit();
  if (key==CODED && keyCode==ESC) exit();
+  if (key=='Q' || key=='q') ;
 } //End keyPressed
 //
 void mousePressed() {      //Listener
