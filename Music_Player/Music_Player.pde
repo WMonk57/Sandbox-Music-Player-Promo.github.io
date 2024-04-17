@@ -13,15 +13,16 @@ float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 //
 color backgroundColor;
-color whiteBackground;
-color darkBackground;
+color whiteBackground=255;
+color darkBackground=0;
 color Aqua=#0AF5EF;
 color Orange=#FF4400;
 color Black = #000000;
 color foregroundColor;
 boolean whiteMode = false;
-  //
-  void setup() {
+color purple= #A20AF5;
+//
+void setup() {
   println("HelloWorld");
 
   //Concatenation & Inspecting Varianles with Character Escapes
@@ -112,16 +113,15 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
    */
   // var Populataition
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
- // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
+  // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
   //if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
-  if ( whiteMode==false && hour()>=8 && hour()<=21 ) {
-  backgroundColor = whiteBackground;
-  foregroundColor = #0AF5EF;
+  if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
+    backgroundColor = whiteBackground;
+    foregroundColor = #0AF5EF;
   } else {
     backgroundColor = darkBackground;
     foregroundColor = #FF4400;
-  if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
-  
+    if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
   }
   //
 } //End setup
@@ -129,21 +129,34 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
 void draw() {
   background(backgroundColor); //grayscale
   fill(foregroundColor);
-  rect(exitX, exitY, exitWidth, exitHeight);
+  //
+  //Quit Button
+fill(purple);
+rect(exitX, exitY, exitWidth, exitHeight);
+  if (mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight ) {
+    fill(Orange);
+    rect(exitX+exitWidth*1/5,exitY+exitHeight*0.75/4,exitWidth*3/5,exitHeight*2.5/4 );
+      fill(foregroundColor);
+  } else {
+    fill(purple);
+  }
   
+  
+  fill(foregroundColor);
 } //End draw
 //
 void keyPressed() {        //Listener
- if (key=='X' || key=='x') exit();
- if (key==CODED && keyCode==ESC) exit();
+  if (key=='X' || key=='x') exit();
+  if (key==CODED && keyCode==ESC) exit();
   if (key=='Q' || key=='q') ;
 } //End keyPressed
 //
 void mousePressed() {      //Listener
- 
-if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight ) {    
-  exit();
-}
+
+  if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight )
+  {
+    exit();
+  }
 } //End mousePressed
 //
 // End MAIN Program

@@ -14,3 +14,4 @@ To Do List
 - [x] add content to home page maybe adds for music player.
 - [ ] night mode colors F5600A, 15eA57, 000000,
 - [ ] day mode colors A20AF5, 0AF5EF, 000639
+- [ ] add a image of a door in prossesing opens when hover over closed when not hover over.
