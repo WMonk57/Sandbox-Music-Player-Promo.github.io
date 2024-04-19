@@ -11,6 +11,9 @@ float exitX, exitY, exitWidth, exitHeight;
 float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
+int size;
+PFont GoofyAhFont
+PFont generalFont
 //
 color backgroundColor;
 color whiteBackground=255;
@@ -41,6 +44,13 @@ void setup() {
   String displayInstructions =( appWidth >= appHeight ) ? "Correct Way" : "!!!!WRONG WAY!!!!" ;
   println(displayInstructions);
   //
+  //Fonts from OS (operating system)
+String[] fontList = PFont.list(); //To list all fonts available on OS
+printArray(fontList);// onyx or wingdings
+size =55;
+generalFont = createFont("Times New Roman", size);
+generalFont = createFont("Times New Roman", size);
+//
   //Populate
   backgroundX = appWidth*0;
   backgroundY =  appHeight*0;
