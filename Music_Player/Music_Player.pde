@@ -12,8 +12,8 @@ float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 int size;
-PFont GoofyAhFont
-PFont generalFont
+PFont GoofyAhFont;
+PFont generalFont;
 //
 color backgroundColor;
 color whiteBackground=255;
@@ -24,6 +24,7 @@ color Black = #000000;
 color foregroundColor;
 boolean whiteMode = false;
 color purple= #A20AF5;
+String exit = "EXIT";
 //
 void setup() {
   println("HelloWorld");
@@ -49,10 +50,10 @@ String[] fontList = PFont.list(); //To list all fonts available on OS
 printArray(fontList);// onyx or wingdings
 size =55;
 generalFont = createFont("Times New Roman", size);
-generalFont = createFont("Times New Roman", size);
+GoofyAhFont = createFont("Wingdings", size);
 //
   //Populate
-  backgroundX = appWidth*0;
+    backgroundX = appWidth*0;
   backgroundY =  appHeight*0;
   backgroundWidth = appWidth*0;
   backgroundHeight = appHeight*0;
@@ -133,6 +134,7 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
     foregroundColor = #FF4400;
     if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
   }
+ 
   //
 } //End setup
 //
@@ -151,6 +153,19 @@ rect(exitX, exitY, exitWidth, exitHeight);
     fill(purple);
   }
   
+   fill(Aqua);//Ink
+textAlign(CENTER,CENTER); //Align X&Y see processing.org / refernce
+//values:left center righ or top center bottom baseline.
+size = 25;
+textFont(generalFont, size);
+text (exit, exitX, exitY, exitWidth, exitHeight);
+
+//
+//
+fill(Orange);//Ink
+textAlign(CENTER,CENTER); //Align X&Y see processing.org / refernce
+//values:left center righ or top center bottom baseline.
+size = 25;
   
   fill(foregroundColor);
 } //End draw
