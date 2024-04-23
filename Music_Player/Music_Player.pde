@@ -1,4 +1,13 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Global Variables
+Minim minim;
+//
 int appWidth, appHeight;
 int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
@@ -46,8 +55,8 @@ void setup() {
   println(displayInstructions);
   //
   //Fonts from OS (operating system)
-String[] fontList = PFont.list(); //To list all fonts available on OS
-printArray(fontList);// onyx or wingdings
+//String[] fontList = PFont.list(); //To list all fonts available on OS
+//printArray(fontList);// onyx or wingdings
 size =55;
 generalFont = createFont("Times New Roman", size);
 GoofyAhFont = createFont("Wingdings", size);
