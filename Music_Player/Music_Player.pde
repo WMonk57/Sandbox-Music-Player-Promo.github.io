@@ -7,6 +7,8 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 Minim minim;
+AudioPlayer soundEffects1;
+AudioPlayer playlist1;
 //
 int appWidth, appHeight;
 int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
@@ -53,6 +55,9 @@ void setup() {
   //display Geometry: landscape, portait, square
   String displayInstructions =( appWidth >= appHeight ) ? "Correct Way" : "!!!!WRONG WAY!!!!" ;
   println(displayInstructions);
+  //
+  minim = new Minim(this);
+  playList1 = minim.loadFile( path );
   //
   //Fonts from OS (operating system)
 //String[] fontList = PFont.list(); //To list all fonts available on OS
