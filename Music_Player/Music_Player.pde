@@ -57,7 +57,14 @@ void setup() {
   println(displayInstructions);
   //
   minim = new Minim(this);
-  playList1 = minim.loadFile( path );
+ String extension = ".mp3";
+ String exitSound = "bruh-sound-effect-made-with-Voicemod";
+ String pathwaySoundEffects = "../SOUND FILE SOUNDSSSSSSSSSSSSsssss/"; 
+ println( pathwaySoundEffects+exitSound+extension );
+ String path = sketchPath( pathwaySoundEffects+exitSound+extension ); 
+ println( path );
+  //soundEffects1 = minim.loadFile( path );
+  //playList1 = minim.loadFile( path );
   //
   //Fonts from OS (operating system)
 //String[] fontList = PFont.list(); //To list all fonts available on OS
@@ -148,8 +155,8 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
     foregroundColor = #FF4400;
     if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
   }
- 
   //
+  
 } //End setup
 //
 void draw() {
@@ -185,16 +192,20 @@ size = 25;
 } //End draw
 //
 void keyPressed() {        //Listener
-  if (key=='X' || key=='x') exit();
+  if (key=='X' || key=='x')  {
+  }exit();
   if (key==CODED && keyCode==ESC) exit();
   if (key=='Q' || key=='q') ;
+ if (key=='?')  soundEffects1.loop(0);
 } //End keyPressed
 //
 void mousePressed() {      //Listener
 
   if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight )
   {
-    exit();
+   soundEffects1.loop(0);
+   delay(900);
+   exit();
   }
 } //End mousePressed
 //
