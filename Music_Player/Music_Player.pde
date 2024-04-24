@@ -23,7 +23,7 @@ float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 int size;
-PFont GoofyAhFont;
+PFont cheese;
 PFont generalFont;
 //
 color backgroundColor;
@@ -33,9 +33,12 @@ color Aqua=#0AF5EF;
 color Orange=#FF4400;
 color Black = #000000;
 color foregroundColor;
+color green =#3FEA07; 
 boolean whiteMode = false;
 color purple= #A20AF5;
 String exit = "EXIT";
+String currentSong = "Song Name Goes HERE";
+String albumCover = "Album Cover Goes HERE";
 //
 void setup() {
   println("HelloWorld");
@@ -57,24 +60,24 @@ void setup() {
   println(displayInstructions);
   //
   minim = new Minim(this);
- String extension = ".mp3";
- String exitSound = "bruh-sound-effect-made-with-Voicemod";
- String pathwaySoundEffects = "../SOUND FILE SOUNDSSSSSSSSSSSSsssss/"; 
- println( pathwaySoundEffects+exitSound+extension );
- String path = sketchPath( pathwaySoundEffects+exitSound+extension ); 
- println( path );
-  //soundEffects1 = minim.loadFile( path );
+  String extension = ".mp3";
+  String exitSound = "bruh-sound-effect-made-with-Voicemod";
+  String pathwaySoundEffects = "../SOUND FILE SOUNDSSSSSSSSSSSSsssss/";
+//  println( pathwaySoundEffects+exitSound+extension );
+  String path = sketchPath( pathwaySoundEffects+exitSound+extension );
+// println( path );
+  soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
   //
   //Fonts from OS (operating system)
-//String[] fontList = PFont.list(); //To list all fonts available on OS
-//printArray(fontList);// onyx or wingdings
-size =55;
-generalFont = createFont("Times New Roman", size);
-GoofyAhFont = createFont("Wingdings", size);
-//
+  //String[] fontList = PFont.list(); //To list all fonts available on OS
+  //printArray(fontList);// onyx or wingdings
+  size =55;
+  generalFont = createFont("Times New Roman", size);
+  cheese = createFont("Wingdings", size);
+  //
   //Populate
-    backgroundX = appWidth*0;
+  backgroundX = appWidth*0;
   backgroundY =  appHeight*0;
   backgroundWidth = appWidth*0;
   backgroundHeight = appHeight*0;
@@ -108,7 +111,7 @@ GoofyAhFont = createFont("Wingdings", size);
   exitHeight = appHeight*1/12;
   currentSongX =appWidth*2.5/10;
   currentSongY  = appHeight*0.15/11;
-  currentSongWidth = appWidth*6/14;
+  currentSongWidth = appWidth*6.5/14;
   currentSongHeight = appHeight*0.5/12;
   timeLeftX = appWidth*8.25/10;
   timeLeftY  = appHeight*8.5/11;
@@ -126,16 +129,16 @@ GoofyAhFont = createFont("Wingdings", size);
   //int centerY= appHeight *1/2;
   //rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
 
-  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
-  rect(rewindX, rewindY, rewindWidth, rewindHeight);
-  rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
-  rect(startX, startY, startWidth, startHeight);
-  rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
-  rect(songBarThingX, songBarThingY, songBarThingWidth, songBarThingHeight);
-  rect(exitX, exitY, exitWidth, exitHeight);
-  rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);
-  rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight);
-  rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
+  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);//
+  rect(rewindX, rewindY, rewindWidth, rewindHeight);//
+  rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);//
+  rect(startX, startY, startWidth, startHeight);//
+  rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);//
+  rect(songBarThingX, songBarThingY, songBarThingWidth, songBarThingHeight);//
+  rect(exitX, exitY, exitWidth, exitHeight);//
+  rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);//
+  rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight);//
+  rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);//
   /*
 rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
    rect(nextSongAlbumCoverX, nextSongAlbumCoverY, nextSongAlbumCoverWidth, nextSongAlbumCoverHeight);
@@ -156,7 +159,6 @@ rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
     if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
   }
   //
-  
 } //End setup
 //
 void draw() {
@@ -164,50 +166,98 @@ void draw() {
   fill(foregroundColor);
   //
   //Quit Button
-fill(purple);
-rect(exitX, exitY, exitWidth, exitHeight);
+  fill(purple);
+  rect(exitX, exitY, exitWidth, exitHeight);
   if (mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight ) {
     fill(Orange);
-    rect(exitX+exitWidth*1/5,exitY+exitHeight*0.75/4,exitWidth*3/5,exitHeight*2.5/4 );
-      fill(foregroundColor);
+    rect(exitX+exitWidth*1/5, exitY+exitHeight*0.75/4, exitWidth*3/5, exitHeight*2.5/4 );
+    fill(foregroundColor);
   } else {
     fill(purple);
   }
-  
-   fill(Aqua);//Ink
-textAlign(CENTER,CENTER); //Align X&Y see processing.org / refernce
-//values:left center righ or top center bottom baseline.
-size = 25;
-textFont(generalFont, size);
-text (exit, exitX, exitY, exitWidth, exitHeight);
 
-//
-//
-fill(Orange);//Ink
-textAlign(CENTER,CENTER); //Align X&Y see processing.org / refernce
-//values:left center righ or top center bottom baseline.
-size = 25;
+  fill(Aqua);//Ink
+  textAlign(CENTER, CENTER); //Align X&Y see processing.org / refernce
+  //values:left center righ or top center bottom baseline.
+  size = 25;
+  textFont(generalFont, size);
+  text (exit, exitX, exitY, exitWidth, exitHeight);
+ 
+  fill(Orange);
+  rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);
+  fill(purple);
+  textAlign(CENTER, CENTER);
+  size = 25;
+  textFont(generalFont, size);
+  text (currentSong, currentSongX, currentSongY, currentSongWidth, currentSongHeight);
+  //
+  //
+  fill(Orange);//Ink
+  textAlign(CENTER, CENTER); //Align X&Y see processing.org / refernce
+  //values:left center righ or top center bottom baseline.
+  size = 25;
   
+  fill(green);
+  rect(startX, startY, startWidth, startHeight);
+
+  fill(green);
+  rect(rewindX, rewindY, rewindWidth, rewindHeight);
+ 
+  fill(green);
+  rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
+  
+  fill(purple);
+  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  fill(green);
+  textAlign(CENTER, CENTER);
+  size = 25;
+  textFont(generalFont, size);
+  text (albumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  //
+  //
+  fill(green);//Ink
+  textAlign(CENTER, CENTER); //Align X&Y see processing.org / refernce
+  //values:left center righ or top center bottom baseline.
+  size = 25;
+  
+  fill(Aqua);
+  rect(songBarThingX, songBarThingY, songBarThingWidth, songBarThingHeight);
+  
+  fill(Aqua);
+  rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight);
+  
+  fill(green);
+  rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
+
+ fill(Aqua);
+ rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
+ 
+ 
+ //
   fill(foregroundColor);
 } //End draw
 //
 void keyPressed() {        //Listener
-  if (key=='X' || key=='x')  {
-  }exit();
-  if (key==CODED && keyCode==ESC) exit();
+  if (key=='X' || key=='x')
+  {
+soundeffect_1();
+  }
+  if (key==CODED && keyCode==ESC) 
+  {
+    soundeffect_1();
+  }
   if (key=='Q' || key=='q') ;
- if (key=='?')  soundEffects1.loop(0);
+  if (key=='?')  soundEffects1.loop(0);
 } //End keyPressed
 //
 void mousePressed() {      //Listener
 
   if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight )
   {
-   soundEffects1.loop(0);
-   delay(900);
-   exit();
+     soundeffect_1();
   }
 } //End mousePressed
 //
+
 // End MAIN Program
 //255,68,0
