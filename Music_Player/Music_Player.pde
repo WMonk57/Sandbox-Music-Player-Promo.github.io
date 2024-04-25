@@ -39,6 +39,7 @@ color purple= #A20AF5;
 String exit = "EXIT";
 String currentSong = "Song Name Goes HERE";
 String albumCover = "Album Cover Goes HERE";
+String timeLeft = " Time remaining goes HERE";
 //
 void setup() {
   println("HelloWorld");
@@ -225,7 +226,19 @@ void draw() {
   
   fill(Aqua);
   rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight);
-  
+  //
+  fill(Orange);
+  textAlign(CENTER, CENTER);
+  size = 25;
+  textFont(generalFont, size);
+  text (timeLeft ,timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight );
+  //
+  //
+  fill(Orange);//Ink
+  textAlign(CENTER, CENTER); //Align X&Y see processing.org / refernce
+  //values:left center righ or top center bottom baseline.
+  size = 25;
+  //
   fill(green);
   rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
 
