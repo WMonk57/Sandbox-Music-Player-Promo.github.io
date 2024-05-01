@@ -2,8 +2,11 @@
 int AppWidth, AppHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
 PImage backgroundImage ;
-
+Boolean lightMode=false,  nightMode=false, dayMode=false;
+int brightness=255;
+//Boolean darkMode=false; not need in keypressed anymore because of lightmode stuff
 void setup() {
+  fullScreen();
   AppWidth = displayWidth;
   AppHeight = displayHeight;
   //Population
@@ -14,7 +17,7 @@ void setup() {
   //
   String backgroundImageName = "Linkin_Park_Hybrid_Theory_Album_Cover.jpg";
   String pathway = "../Images/";
-  String path = pathway + backgroundImageName; 
+  String path = pathway + backgroundImageName;
   backgroundImage = loadImage(path) ;
   //
   //DIVs
@@ -22,13 +25,25 @@ void setup() {
 } //End setup
 
 void draw() {
-  image(backgroundImage,backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
+  tint(255, brightness);
+  image(backgroundImage, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
+  //
+  println(lightMode);
 } //End draw
 //
 void mousePressed() {
 } // End mouse Pressed
 //
 void keyPressed() {
+  //keyboard shortcuts for mouse pressing prototype
+  if ( key=='Z' || key=='z' ) {  //day mode white light containing blue color
+ if (lightMode == false ) {
+   lightMode = true; //light mode on
+  } else {  
+    lightMode = false; // dark mode on 
+  }
+  } //End Day Mode
+  //End Night Mode
 } // End KeyPressed
 //
 //END MAIN Program
