@@ -9,6 +9,7 @@ float exitX, exitY, exitWidth, exitHeight;
 float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
 void divs() {
   population();
   drawRects();
@@ -16,10 +17,10 @@ void divs() {
 //
 void population() {
    //Populate
-  backgroundX = appWidth*0;
-  backgroundY =  appHeight*0;
-  backgroundWidth = appWidth*0;
-  backgroundHeight = appHeight*0;
+  backgroundImageX = appWidth*0;
+  backgroundImageY  = appHeight*0;
+  backgroundImageWidth = appWidth-1;
+  backgroundImageHeight = appHeight-1;
   albumCoverX = appWidth*1/10;
   albumCoverY =  appHeight*1/11;
   albumCoverWidth = appWidth*8/10;
@@ -80,6 +81,7 @@ void drawRects() { //Layout DIVs
   rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);//
   rect(timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight);//
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);//
+  rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   /*
 rect(nextSongX, nextSongY, nextSongWidth,nextSongHeight);
    rect(nextSongAlbumCoverX, nextSongAlbumCoverY, nextSongAlbumCoverWidth, nextSongAlbumCoverHeight);
