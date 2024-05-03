@@ -5,9 +5,7 @@ float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
 int appWidth, appHeight;
 PImage albumCover;
 String albumCoverPath ; // Lesson Note I AM COOL AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA
-String MtoM = "Minutes_to_Midnight_cover" ; 
-String extension = ".jpg"
-String pathway = "../Images/";
+
 
 //
 void setup() {
@@ -19,6 +17,19 @@ void setup() {
   albumCoverY =  appHeight*1/11;
   albumCoverWidth = appWidth*8/10;
   albumCoverHeight = appHeight*7/11;
+  //
+  String extension = ".jpg";
+  String MtoM = "Minutes_to_Midnight_cover" ; 
+  String pathway = "../Images/";
+  albumCoverPath = pathway + MtoM + extension ;
+  albumCover= loadImage( albumCoverPath );
+  // 
+  //
+  //
+  //
+  //
+  //
+  //
   rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);//
   //
 }//End void setup
