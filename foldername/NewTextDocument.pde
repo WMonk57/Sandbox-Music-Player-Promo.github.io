@@ -24,7 +24,12 @@ void setup() {
   albumCoverPath = pathway + MtoM + extension ;
   albumCover= loadImage( albumCoverPath );
   // 
-  //
+  //aspect ratio 
+  float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
+  int albumCoverImageWidthPixel= 300;
+  int albumCoverImageHeightPixel = 300;
+  float albumCoverAspect Ratio= ; 
+  float largerAlbumCoverDimension = ; // ASPECT ratio CODE 
   //
   //
   //
