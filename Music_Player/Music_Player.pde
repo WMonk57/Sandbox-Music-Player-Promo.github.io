@@ -155,6 +155,13 @@ void draw() {
 
   fill(green);
   rect(startX, startY, startWidth, startHeight);
+  if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startHeight ) {
+    fill(Aqua);
+    rect(startX+startWidth*1/5, startY+startHeight*0.75/4, startWidth*3/5, startHeight*2.5/4 );
+    fill(foregroundColor);
+  } else {
+    fill(purple);
+  }
 
   fill(green);
   rect(rewindX, rewindY, rewindWidth, rewindHeight);
