@@ -37,6 +37,9 @@ PImage hybridTheory, meteoraAlbumCover;
 String pathDarkBackgroundImage, pathLightBackgroundImage;
 color backgroundColour;
 color foregroundColour;
+String albumCoverPath ; 
+PImage albumCover1;
+float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
 //
 void setup() {
   println("HelloWorld");
@@ -76,7 +79,42 @@ void setup() {
   // println( path );
   soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
+
+  String MtoM = "Minutes_to_Midnight_cover" ; 
+  String pathway3 = "../Images/";
+  albumCoverPath = pathway3 + MtoM + extension2 ;
+  albumCover1= loadImage( albumCoverPath );
+  // 
+  //aspect ratio 
+  float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
+  float albumCoverImageWidthPixel= 300.0;
+  float albumCoverImageHeightPixel = 300.0;
+  float albumCoverAspectRatio= albumCoverImageWidthPixel / albumCoverImageHeightPixel ;
+  float largerAlbumCoverDimension = smallerAlbumCoverDimension*albumCoverAspectRatio ; // ASPECT ratio CODE 
   //
+  if ( albumCoverWidth < largerAlbumCoverDimension ) { //Image will not fit into DIV rect()
+    while ( albumCoverWidth < largerAlbumCoverDimension ) {
+      largerAlbumCoverDimension -= 1;
+      smallerAlbumCoverDimension -= 1;
+      //NOTE: ratios like percent are not linear decreases in both directions
+    }
+  }
+  albumCoverWidthAdjusted = largerAlbumCoverDimension;
+  albumCoverHeightAdjusted = smallerAlbumCoverDimension;
+  //
+  //Image can be centered, left justified, or right justified on the larger dimension;
+  // LEFT: X-value of image same as rect()
+  // CENTERED: X-value of image = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
+  // RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+   
+  albumCoverRIGHT = albumCoverX;
+  albumCoverCENTERED = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2 ;
+  albumCoverLEFT =albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+  //
+  //
+  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);//
+  rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
+  //  //
   //Fonts from OS (operating system)
   //String[] fontList = PFont.list(); //To list all fonts available on OS
   //printArray(fontList);// onyx or wingdings
@@ -127,6 +165,8 @@ void draw() {
     tint(255, 255, 255, 0); //no blue;
   }
   //
+  
+//
   image(backgroundImage, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   //
   println(lightMode);
@@ -181,13 +221,13 @@ void draw() {
   fill(green);
   rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
 
-  fill(purple);
-  rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
-  fill(green);
-  textAlign(CENTER, CENTER);
-  size = 25;
-  textFont(generalFont, size);
-  text (albumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+ // fill(purple);
+ // rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+ // fill(green);
+ // textAlign(CENTER, CENTER);
+ // size = 25;
+ // textFont(generalFont, size);
+//  text (albumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
   //
   //
   fill(green);//Ink
@@ -219,6 +259,7 @@ void draw() {
   fill(Aqua);
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
 
+image( albumCover1, albumCoverCENTERED, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted);
 
   //
   fill(foregroundColor);

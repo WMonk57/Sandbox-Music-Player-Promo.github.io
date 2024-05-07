@@ -1,5 +1,4 @@
 //global variables
-float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
 float rewindX, rewindY, rewindWidth, rewindHeight;
 float fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight;
 float startX, startY, startWidth, startHeight;
@@ -10,6 +9,8 @@ float currentSongX, currentSongY, currentSongWidth, currentSongHeight;
 float timeLeftX, timeLeftY, timeLeftWidth, timeLeftHeight;
 float volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight, albumCoverWidthAdjusted, albumCoverHeightAdjusted;
+
 void divs() {
   population();
   drawRects();
