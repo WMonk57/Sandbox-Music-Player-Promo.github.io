@@ -16,7 +16,7 @@ int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 int size;
 PFont cheese;
 PFont generalFont;
-Boolean lightMode=true, nightMode=false, dayMode=false;
+Boolean lightMode=false, dayMode=false;
 //
 color backgroundColor;
 color whiteBackground=255;
@@ -33,6 +33,10 @@ String currentSong = "Song Name Goes HERE";
 String albumCover = "Album Cover Goes HERE";
 String timeLeft = " Time remaining goes HERE";
 PImage backgroundImage;
+PImage hybridTheory, meteoraAlbumCover;
+String pathDarkBackgroundImage, pathLightBackgroundImage;
+color backgroundColour;
+color foregroundColour;
 //
 void setup() {
   println("HelloWorld");
@@ -66,6 +70,8 @@ void setup() {
   String backgroundImageName = hybridTheory;
   String pathway = "../Images/";
   String path2 = pathway + backgroundImageName + extension2;
+  pathLightBackgroundImage = pathway + meteoraAlbumCover + extension2;
+  pathDarkBackgroundImage = pathway +  hybridTheory + extension2;
   backgroundImage = loadImage(path2) ;
   // println( path );
   soundEffects1 = minim.loadFile( path );
@@ -84,37 +90,43 @@ void setup() {
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
   // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
   //if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
-  if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
-     if (lightMode==true) {backgroundColor = whiteBackground;
-    foregroundColor = #0AF5EF;
-    backgroundImageName = hybridTheory; //obiWan
-    path = pathway + backgroundImageName + extension;
-    backgroundImage = loadImage( path );
+ // if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
+   if ( hour()>=8 && hour()<=21 ) dayMode=true;
+    if ( dayMode==true && lightMode==true ) { //Light & Dark Modes
+    backgroundColour = whiteBackground;
+    foregroundColour = darkBackground;
+    backgroundImage = loadImage( pathLightBackgroundImage ); //Changing this Variable with 3 different images
+  } else if ( lightMode==false ) {
+    backgroundColour = darkBackground;
+    foregroundColour = whiteBackground;
+    backgroundImage = loadImage( pathDarkBackgroundImage );
   } else {
-      backgroundColor = #0AF5EF;
-    foregroundColor = whiteBackground;
-  backgroundImageName = meteoraAlbumCover;
-    path = pathway + backgroundImageName + extension;
-    backgroundImage = loadImage( path );
-} //end light mode
-     
-  } else {
-    backgroundColor = darkBackground;
-    foregroundColor = #FF4400;
-    if (hour() >=8 && hour()<21 ) foregroundColor = #0AF5EF;
+    backgroundColour = darkBackground;
+    foregroundColour = Orange; 
+    backgroundImage = loadImage( pathDarkBackgroundImage );
   }
   //
 } //End setup
 //
 void draw() {
-  background(0); // day mode light mode ON /OFF
+ /* background(0); // day mode light mode ON /OFF
   // light mode ON = max saturation and max color
   if (lightMode == true) { // need key bind
     brightness = 255;
   } else {
     brightness = 100;//userpreference smallest brightness
   }
-  tint(255, brightness);
+  tint(255, 255, 255, 0);
+  */
+   if ( dayMode=true && lightMode == true ) { //Boolean keyBind, Logical Shortcut
+    //CAUTION: See setup
+    backgroundImage = loadImage( pathLightBackgroundImage );
+  } else if ( lightMode == false ) {
+    backgroundImage = loadImage( pathDarkBackgroundImage );
+  } else {
+    tint(255, 255, 255, 0); //no blue;
+  }
+  //
   image(backgroundImage, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   //
   println(lightMode);
@@ -224,19 +236,19 @@ void keyPressed() {        //Listener
   if (key=='Q' || key=='q') ;
   if (key=='?')  soundEffects1.loop(0);
 
-  if ( key=='Z' || key=='z' ) {  //day mode white light containing blue color
-    if (lightMode == false ) {
-      lightMode = true; //light mode on
+  if ( key=='Z' || key=='z' ) { //Day Mode, White Light Containing Blue Colour
+    if (  lightMode == false ) {
+      lightMode = true;  //Light Mode ON
     } else {
-      lightMode = false; // dark mode on
+      lightMode = false; //Dark Mode ON, no darkMode Boolean required
     }
-  }
+ /* }
     if (key=='A' || key=='a') {
     if (  whiteMode == false ) {
       whiteMode = true;  //Light Mode ON
     } else {
       whiteMode = false; //Dark Mode ON, no darkMode Boolean required
-    }
+    }*/
     }
    //End Day Mode
   //End Night Mode
