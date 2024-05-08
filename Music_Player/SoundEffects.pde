@@ -5,5 +5,8 @@ void soundeffect_1() {
   soundEffects1.loop(loopOnce);
     delay(timeForSoundEffect1);
     exit();
+    
+    
+    
 }//End soundeffect_1
 // End MAIN Program

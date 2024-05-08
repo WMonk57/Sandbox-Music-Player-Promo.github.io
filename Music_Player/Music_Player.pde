@@ -9,6 +9,7 @@ import ddf.minim.ugens.*;
 Minim minim;
 AudioPlayer soundEffects1;
 AudioPlayer playlist1;
+AudioPlayer soundEffects2;
 //
 int appWidth, appHeight;
 int brightness = 255;
@@ -17,6 +18,7 @@ int size;
 PFont cheese;
 PFont generalFont;
 Boolean lightMode=false, dayMode=false;
+PImage MtoM;
 //
 color backgroundColor;
 color whiteBackground=255;
@@ -66,6 +68,10 @@ void setup() {
   String pathwaySoundEffects = "../SOUND FILE SOUNDSSSSSSSSSSSSsssss/";
   //  println( pathwaySoundEffects+exitSound+extension );
   String path = sketchPath( pathwaySoundEffects+exitSound+extension );
+  String clownCar = "clown-car-made-with-Voicemod";
+  String path3 = sketchPath( pathwaySoundEffects + clownCar + extension);
+  
+  
   //
   String extension2 = ".jpg";
   String meteoraAlbumCover = "Linkin_Park_Meteora_Album_Cover";
@@ -78,6 +84,7 @@ void setup() {
   backgroundImage = loadImage(path2) ;
   // println( path );
   soundEffects1 = minim.loadFile( path );
+  soundEffects2 = minim.loadFile( path3); 
   //playList1 = minim.loadFile( path );
 
   String MtoM = "Minutes_to_Midnight_cover" ; 
@@ -274,8 +281,8 @@ void keyPressed() {        //Listener
   {
     soundeffect_1();
   }
-  if (key=='Q' || key=='q') ;
-  if (key=='?')  soundEffects1.loop(0);
+  if (key=='Q' || key=='q') soundEffects2.loop(3);
+  if (key=='?')  soundEffects1.loop(5000);
 
   if ( key=='Z' || key=='z' ) { //Day Mode, White Light Containing Blue Colour
     if (  lightMode == false ) {
