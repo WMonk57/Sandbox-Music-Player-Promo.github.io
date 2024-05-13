@@ -110,9 +110,9 @@ void setup() {
   albumCoverHeightAdjusted = smallerAlbumCoverDimension;
   //
   //Image can be centered, left justified, or right justified on the larger dimension;
-  // LEFT: X-value of image same as rect()
+   //LEFT: X-value of image same as rect()
   // CENTERED: X-value of image = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
-  // RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+ // RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
    
   albumCoverRIGHT = albumCoverX;
   albumCoverCENTERED = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2 ;
@@ -266,8 +266,9 @@ void draw() {
   fill(Aqua);
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
 
-image( albumCover1, albumCoverCENTERED, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted);
-
+image( albumCover1, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+// add adjusted stuff later 
+// albumCoverCENTER,  instead of x            Add adjusted for width and height.
   //
   fill(foregroundColor);
 } //End draw
