@@ -23,8 +23,8 @@ void population() {
   backgroundImageWidth = appWidth-1;
   backgroundImageHeight = appHeight-1;
   albumCoverX = appWidth*3/10;
-  albumCoverY =  appHeight*1/11;
-  albumCoverWidth = appWidth*6/10;
+  albumCoverY =  appHeight*2/11;
+  albumCoverWidth = appWidth*4/10;
   albumCoverHeight = appHeight*5/11;
   rewindX = appWidth*4/14;
   rewindY = appHeight*10/12;
