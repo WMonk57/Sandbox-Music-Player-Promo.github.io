@@ -40,12 +40,14 @@ void setup() {
   soundEffects2 = minim.loadFile( path3); 
   playlist1 = minim.loadFile(pathNewsRoomMUSIC);
   println ( musicpath + newsroom + extension);
-  
+  //
+//  playlist1.loop(0);
   
 } // END setup
 //
 void draw() { 
-  
+  println("song position", playlist1.position(), "song length", playlist1.length());
+  playlist1.loop(0);
 }// End Draw
 //
 void keyPressed() {
