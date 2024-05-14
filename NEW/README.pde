@@ -8,10 +8,13 @@ import ddf.minim.ugens.*;
 //
 //global variables 
 Minim minim; 
-AudioPlayer playlist1;
-AudioPlayer soundEffects1;
-AudioPlayer soundEffects2;
-AudioPlayer musicsound1;
+int numberSoundEffects = 2;
+int numberMusicSongs = 4;
+AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
+AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
+//AudioPlayer soundEffects2;
+//AudioPlayer musicsound1;
+int currentSong = 0;
 //
 int appWidth, appHeight;
 //
@@ -36,18 +39,34 @@ void setup() {
   String pathNewsRoomMUSIC = sketchPath ( musicpath+newsroom+extension); 
   String clownCar = "clown-car-made-with-Voicemod";
   String path3 = sketchPath( pathwaySoundEffects + clownCar + extension);
-   soundEffects1 = minim.loadFile( pathQuitButtonSOund );
-  soundEffects2 = minim.loadFile( path3); 
-  playlist1 = minim.loadFile(pathNewsRoomMUSIC);
+   soundEffects[0] = minim.loadFile( pathQuitButtonSOund );
+  soundEffects[1] = minim.loadFile( path3); 
+  playlist[0] = minim.loadFile(pathNewsRoomMUSIC);
   println ( musicpath + newsroom + extension);
   //
-//  playlist1.loop(0);
-  
+  playlist[currentSong]loop(0);
 } // END setup
 //
 void draw() { 
-  println("song position", playlist1.position(), "song length", playlist1.length());
-  playlist1.loop(0);
+  //println("song position", playlist1.position(), "song length", playlist1.length());
+  
+  
+  //  playlist[currentSong].loop(0);
+  
+  //if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
+  //if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+  //if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
+  //
+  /*
+  if ( playlist[currentSong].isPlaying() ) {
+    //Empty IF, TRUE
+  } else {
+    //currentSong at end of FILE
+    playlist[currentSong].rewind();
+    currentSong = currentSong + 1; //currentSong++; currentSong+=1
+    playlist[currentSong].play();
+  }
+  */
 }// End Draw
 //
 void keyPressed() {
