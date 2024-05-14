@@ -44,18 +44,19 @@ void setup() {
   playlist[0] = minim.loadFile(pathNewsRoomMUSIC);
   println ( musicpath + newsroom + extension);
   //
-  playlist[currentSong]loop(0);
+  //playlist[currentSong].loop(0);
 } // END setup
 //
 void draw() { 
-  //println("song position", playlist1.position(), "song length", playlist1.length());
+  println("song position", playlist[currentSong].position(), "song length", playlist[currentSong].length());
   
   
   //  playlist[currentSong].loop(0);
   
   //if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
-  //if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
-  //if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
+ // if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+ if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
+  if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
   //
   /*
   if ( playlist[currentSong].isPlaying() ) {
@@ -70,6 +71,14 @@ void draw() {
 }// End Draw
 //
 void keyPressed() {
+  if ( key == 'P' || key == 'p' ) { //play pause button feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //
+  if ( playlist[currentSong].isPlaying()) {
+    playlist[currentSong].pause();
+  } else {
+    playlist[currentSong].play();
+  }
+  } //END play pause button 
   
 }//END keyPressed 
 //
