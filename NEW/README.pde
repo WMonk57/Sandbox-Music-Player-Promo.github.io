@@ -58,16 +58,16 @@ void draw() {
  if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
   if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
   //
-  /*
+  
   if ( playlist[currentSong].isPlaying() ) {
     //Empty IF, TRUE
   } else {
     //currentSong at end of FILE
     playlist[currentSong].rewind();
-    currentSong = currentSong + 1; //currentSong++; currentSong+=1
-    playlist[currentSong].play();
+    //currentSong = currentSong + 1; //currentSong++; currentSong+=1
+   // playlist[currentSong].play();
   }
-  */
+  
 }// End Draw
 //
 void keyPressed() {
@@ -81,9 +81,10 @@ void keyPressed() {
   } //END play pause button 
   
 }//END keyPressed 
-//
+//ss
 void mousePressed() {
   
 }// END mousePressed
 //
 //END MAIN PROGRAM
+// .rewind(); for later 
