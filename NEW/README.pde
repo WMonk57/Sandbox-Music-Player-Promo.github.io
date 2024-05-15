@@ -61,11 +61,17 @@ void draw() {
   
   if ( playlist[currentSong].isPlaying() ) {
     //Empty IF, TRUE
-  } else {
+  } else if ( playlist[currentSong].length() < 60000 ) {
+    playlist [currentSong].rewind();
+  } 
+  else if (!playlist[currentSong].isPlaying() && ( playlist[currentSong].position() > playlist[currentSong].length()*0.75 ) ) {
+    //true if 75% player restart 
     //currentSong at end of FILE
     playlist[currentSong].rewind();
     //currentSong = currentSong + 1; //currentSong++; currentSong+=1
    // playlist[currentSong].play();
+  } else {
+    
   }
   
 }// End Draw
@@ -81,7 +87,7 @@ void keyPressed() {
   } //END play pause button 
   
 }//END keyPressed 
-//ss
+//
 void mousePressed() {
   
 }// END mousePressed
