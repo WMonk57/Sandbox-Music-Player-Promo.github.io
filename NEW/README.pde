@@ -17,6 +17,7 @@ AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
 int currentSong = 0;
 //
 int appWidth, appHeight;
+Boolean looping = false;
 //
 void setup() {
   fullScreen();   // displayWidth, displayHeight
@@ -55,15 +56,16 @@ void draw() {
 
   if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
   if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+  println(looping);
   if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
   if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
   //
 
   if ( playlist[currentSong].isPlaying() ) {
     //Empty IF, TRUE
-  } else if ( !playlist[currentSong].isPlaying() && playlist[currentSong].length() < 60000 ) {
+  } else if ( looping== false && !playlist[currentSong].isPlaying() && playlist[currentSong].length() < 60000 ) {
     playlist [currentSong].rewind();
-  } else if (!playlist[currentSong].isPlaying() && ( playlist[currentSong].position() > playlist[currentSong].length()*0.75 ) ) {
+  } else if ( looping== false && !playlist[currentSong].isPlaying() && ( playlist[currentSong].position() > playlist[currentSong].length()*0.75 ) ) {
     //true if 75% player restart
     //currentSong at end of FILE
     playlist[currentSong].rewind();
@@ -83,11 +85,18 @@ void keyPressed() {
     }
   } //END play pause button
   if ( key =='L' || key == 'l') {
-    playlist[currentSong].loop(1)
+    playlist[currentSong].loop(1);
+    looping = true;
   } // END LOOP ONCE
   if (key == 'I' || key == 'i') {
-    playlist[currentSong].loop()
+    playlist[currentSong].loop();
+    looping = true;
   } // END LOOP INFINITY
+  if (key == 'O' || key == 'o' ) {
+   playlist[currentSong] .pause();
+   playlist[currentSong] .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
+} // END STOP BUTTON 
+  
 }//END keyPressed
 //
 void mousePressed() {
