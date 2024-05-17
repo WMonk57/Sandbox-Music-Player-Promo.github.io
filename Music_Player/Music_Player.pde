@@ -44,6 +44,10 @@ PImage albumCover1;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
 PImage playButton1;
 String playButtonPath;
+String Rewind;
+PImage REWIND;
+String fastF;
+PImage FastF;
 //
 void setup() {
   println("HelloWorld");
@@ -98,6 +102,15 @@ void setup() {
   String pathway4 = "../Images/";
   playButtonPath = pathway4 + PLAY + extension2;
   playButton1= loadImage(playButtonPath);
+  
+  String ReWind = "56280201.png";
+  String pathway5 = "../Images/";
+  Rewind = pathway5 + ReWind;
+  REWIND = loadImage(Rewind);
+  
+  String fastForward = "5628020.png";
+  fastF = pathway4+ fastForward;
+  FastF = loadImage(fastF);
   //
   //aspect ratio
   float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
@@ -225,10 +238,11 @@ void draw() {
 
   fill(green);
   rect(rewindX, rewindY, rewindWidth, rewindHeight);
+  image(REWIND,rewindX, rewindY, rewindWidth, rewindHeight);
 
   fill(green);
   rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
-
+  image(FastF, fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
   // fill(purple);
   // rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
   // fill(green);
