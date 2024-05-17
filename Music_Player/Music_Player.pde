@@ -39,9 +39,11 @@ PImage hybridTheory, meteoraAlbumCover;
 String pathDarkBackgroundImage, pathLightBackgroundImage;
 color backgroundColour;
 color foregroundColour;
-String albumCoverPath ; 
+String albumCoverPath ;
 PImage albumCover1;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
+PImage playButton1;
+String playButtonPath;
 //
 void setup() {
   println("HelloWorld");
@@ -70,8 +72,8 @@ void setup() {
   String path = sketchPath( pathwaySoundEffects+exitSound+extension );
   String clownCar = "clown-car-made-with-Voicemod";
   String path3 = sketchPath( pathwaySoundEffects + clownCar + extension);
-  
-  
+
+
   //
   String extension2 = ".jpg";
   String meteoraAlbumCover = "Linkin_Park_Meteora_Album_Cover";
@@ -84,20 +86,25 @@ void setup() {
   backgroundImage = loadImage(path2) ;
   // println( path );
   soundEffects1 = minim.loadFile( path );
-  soundEffects2 = minim.loadFile( path3); 
+  soundEffects2 = minim.loadFile( path3);
   //playList1 = minim.loadFile( path );
 
-  String MtoM = "Minutes_to_Midnight_cover" ; 
+  String MtoM = "Minutes_to_Midnight_cover" ;
   String pathway3 = "../Images/";
   albumCoverPath = pathway3 + MtoM + extension2 ;
   albumCover1= loadImage( albumCoverPath );
-  // 
-  //aspect ratio 
+  
+  String PLAY = "download";
+  String pathway4 = "../Images/";
+  playButtonPath = pathway4 + PLAY + extension2;
+  playButton1= loadImage(playButtonPath);
+  //
+  //aspect ratio
   float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
   float albumCoverImageWidthPixel= 300.0;
   float albumCoverImageHeightPixel = 300.0;
   float albumCoverAspectRatio= albumCoverImageWidthPixel / albumCoverImageHeightPixel ;
-  float largerAlbumCoverDimension = smallerAlbumCoverDimension*albumCoverAspectRatio ; // ASPECT ratio CODE 
+  float largerAlbumCoverDimension = smallerAlbumCoverDimension*albumCoverAspectRatio ; // ASPECT ratio CODE
   //
   if ( albumCoverWidth < largerAlbumCoverDimension ) { //Image will not fit into DIV rect()
     while ( albumCoverWidth < largerAlbumCoverDimension ) {
@@ -110,10 +117,10 @@ void setup() {
   albumCoverHeightAdjusted = smallerAlbumCoverDimension;
   //
   //Image can be centered, left justified, or right justified on the larger dimension;
-   //LEFT: X-value of image same as rect()
+  //LEFT: X-value of image same as rect()
   // CENTERED: X-value of image = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
- // RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
-   
+  // RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+
   albumCoverRIGHT = albumCoverX;
   albumCoverCENTERED = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2 ;
   albumCoverLEFT =albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
@@ -135,9 +142,9 @@ void setup() {
   //if () {backgroundColor = whiteBackground} else {backgroundColor = darkBackground}
   // if (  whiteMode==true && hour() >=8 && hour()<21 ) backgroundColor= whiteBackground;
   //if ( hour() <8 && hour()>=21 ) backgroundColor= darkBackground;
- // if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
-   if ( hour()>=8 && hour()<=21 ) dayMode=true;
-    if ( dayMode==true && lightMode==true ) { //Light & Dark Modes
+  // if ( whiteMode==true && hour()>=8 && hour()<=21 ) {
+  if ( hour()>=8 && hour()<=21 ) dayMode=true;
+  if ( dayMode==true && lightMode==true ) { //Light & Dark Modes
     backgroundColour = whiteBackground;
     foregroundColour = darkBackground;
     backgroundImage = loadImage( pathLightBackgroundImage ); //Changing this Variable with 3 different images
@@ -147,23 +154,23 @@ void setup() {
     backgroundImage = loadImage( pathDarkBackgroundImage );
   } else {
     backgroundColour = darkBackground;
-    foregroundColour = Orange; 
+    foregroundColour = Orange;
     backgroundImage = loadImage( pathDarkBackgroundImage );
   }
   //
 } //End setup
 //
 void draw() {
- /* background(0); // day mode light mode ON /OFF
-  // light mode ON = max saturation and max color
-  if (lightMode == true) { // need key bind
-    brightness = 255;
-  } else {
-    brightness = 100;//userpreference smallest brightness
-  }
-  tint(255, 255, 255, 0);
-  */
-   if ( dayMode=true && lightMode == true ) { //Boolean keyBind, Logical Shortcut
+  /* background(0); // day mode light mode ON /OFF
+   // light mode ON = max saturation and max color
+   if (lightMode == true) { // need key bind
+   brightness = 255;
+   } else {
+   brightness = 100;//userpreference smallest brightness
+   }
+   tint(255, 255, 255, 0);
+   */
+  if ( dayMode=true && lightMode == true ) { //Boolean keyBind, Logical Shortcut
     //CAUTION: See setup
     backgroundImage = loadImage( pathLightBackgroundImage );
   } else if ( lightMode == false ) {
@@ -172,8 +179,8 @@ void draw() {
     tint(255, 255, 255, 0); //no blue;
   }
   //
-  
-//
+
+  //
   image(backgroundImage, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   //
   println(lightMode);
@@ -214,13 +221,7 @@ void draw() {
 
   fill(green);
   rect(startX, startY, startWidth, startHeight);
-  if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startHeight ) {
-    fill(Aqua);
-    rect(startX+startWidth*1/5, startY+startHeight*0.75/4, startWidth*3/5, startHeight*2.5/4 );
-    fill(foregroundColor);
-  } else {
-    fill(purple);
-  }
+  image(playButton1, startX, startY, startWidth, startHeight);
 
   fill(green);
   rect(rewindX, rewindY, rewindWidth, rewindHeight);
@@ -228,13 +229,13 @@ void draw() {
   fill(green);
   rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
 
- // fill(purple);
- // rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
- // fill(green);
- // textAlign(CENTER, CENTER);
- // size = 25;
- // textFont(generalFont, size);
-//  text (albumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  // fill(purple);
+  // rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  // fill(green);
+  // textAlign(CENTER, CENTER);
+  // size = 25;
+  // textFont(generalFont, size);
+  //  text (albumCover, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
   //
   //
   fill(green);//Ink
@@ -266,9 +267,9 @@ void draw() {
   fill(Aqua);
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
 
-image( albumCover1, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
-// add adjusted stuff later 
-// albumCoverCENTER,  instead of x            Add adjusted for width and height.
+  image( albumCover1, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  // add adjusted stuff later
+  // albumCoverCENTER,  instead of x            Add adjusted for width and height.
   //
   fill(foregroundColor);
 } //End draw
@@ -291,15 +292,15 @@ void keyPressed() {        //Listener
     } else {
       lightMode = false; //Dark Mode ON, no darkMode Boolean required
     }
- /* }
-    if (key=='A' || key=='a') {
-    if (  whiteMode == false ) {
-      whiteMode = true;  //Light Mode ON
-    } else {
-      whiteMode = false; //Dark Mode ON, no darkMode Boolean required
-    }*/
-    }
-   //End Day Mode
+    /* }
+     if (key=='A' || key=='a') {
+     if (  whiteMode == false ) {
+     whiteMode = true;  //Light Mode ON
+     } else {
+     whiteMode = false; //Dark Mode ON, no darkMode Boolean required
+     }*/
+  }
+  //End Day Mode
   //End Night Mode
 } //End keyPressed
 //
@@ -309,8 +310,12 @@ void mousePressed() {      //Listener
   {
     soundeffect_1();
   }
+  if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY< rewindY+rewindHeight)
+  {
+    //.rewind();
+  }
 } //End mousePressed
 //
-
+//rewindX, rewindY, rewindWidth, rewindHeight
 // End MAIN Program
 //255,68,0
