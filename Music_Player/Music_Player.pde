@@ -48,6 +48,12 @@ String Rewind;
 PImage REWIND;
 String fastF;
 PImage FastF;
+PImage Gear;
+String settingspath;
+String DoorOpen;
+PImage exitOpenDoor;
+String doorclose;
+PImage DoorClosed;
 //
 void setup() {
   println("HelloWorld");
@@ -106,11 +112,26 @@ void setup() {
   String ReWind = "56280201.png";
   String pathway5 = "../Images/";
   Rewind = pathway5 + ReWind;
-  REWIND = loadImage(Rewind);
+  REWIND = loadImage( Rewind );
   
   String fastForward = "5628020.png";
   fastF = pathway4+ fastForward;
   FastF = loadImage(fastF);
+
+  String settings = "images.jfif.ca";
+  settingspath = pathway4 + settings + extension2;
+  Gear = loadImage(settingspath);
+  //
+  String doorOpen = "istockphoto-504739809-612x612.jpg";
+  DoorOpen = pathway4 + doorOpen;
+  exitOpenDoor = loadImage(DoorOpen);
+  //
+  String doorClosing = "images";
+  String pathTest1 = "../Images/";
+  doorclose =  pathTest1 + doorClosing + extension2;
+  DoorClosed = loadImage(doorclose);
+  //
+  String
   //
   //aspect ratio
   float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
@@ -206,18 +227,20 @@ void draw() {
   if (mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight ) {
     fill(Orange);
     rect(exitX+exitWidth*1/5, exitY+exitHeight*0.75/4, exitWidth*3/5, exitHeight*2.5/4 );
+    image(exitOpenDoor, exitX, exitY, exitWidth, exitHeight);
     fill(foregroundColor);
   } else {
     fill(purple);
+image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   }
-
+/*
   fill(Aqua);//Ink
   textAlign(CENTER, CENTER); //Align X&Y see processing.org / refernce
   //values:left center righ or top center bottom baseline.
   size = 25;
   textFont(generalFont, size);
   text (exit, exitX, exitY, exitWidth, exitHeight);
-
+*/
   fill(Orange);
   rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);
   fill(purple);
@@ -277,6 +300,7 @@ void draw() {
   //
   fill(green);
   rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
+  image(Gear, settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
 
   fill(Aqua);
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
