@@ -1,3 +1,4 @@
+import ddf.minim.AudioPlayer.*;
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -97,6 +98,8 @@ void keyPressed() {
    playlist[currentSong] .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
 } // END STOP BUTTON 
   
+  if(key == 'R' || key == 'r')playlist[currentSong].skip(-10000);
+  if(key == 'F' || key == 'f')playlist[currentSong].skip(10000);
 }//END keyPressed
 //
 void mousePressed() {
