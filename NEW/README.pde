@@ -97,9 +97,18 @@ void keyPressed() {
    playlist[currentSong] .pause();
    playlist[currentSong] .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
 } // END STOP BUTTON 
+  //
+  int skip = 10000;//Local
   
-  if(key == 'R' || key == 'r')playlist[currentSong].skip(-10000);
-  if(key == 'F' || key == 'f')playlist[currentSong].skip(10000);
+  if(key == 'R' || key == 'r')playlist[currentSong].skip(-skip);
+  if(key == 'F' || key == 'f')playlist[currentSong].skip(skip);
+  //if (key == 'E'|| key == 'e')skip = 20000;
+ // if (key == 'D'|| key == 'd')skip = 10000;
+//  if (key == 'E'|| key =='e'){
+// if(skip==10000) { skip = playlist[currentSong].length()*0.10);
+//}else{
+//    skip=5000  }
+//}
 }//END keyPressed
 //
 void mousePressed() {
