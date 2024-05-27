@@ -51,8 +51,6 @@ void setup() {
 //
 void draw() {
   println("song position", playlist[currentSong].position(), "song length", playlist[currentSong].length());
-
-
   //  playlist[currentSong].loop(0);
 
   if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
@@ -85,6 +83,10 @@ void keyPressed() {
       playlist[currentSong].play();
     }
   } //END play pause button
+// Mute Button
+if(key == 'U' || key == 'u'){ playlist[currentSong].mute};
+if(key == 'J' || key == 'j') { playlist[currentSong].unmute};
+//
   if ( key =='L' || key == 'l') {
     playlist[currentSong].loop(1);
     looping = true;
@@ -102,13 +104,15 @@ void keyPressed() {
   
   if(key == 'R' || key == 'r')playlist[currentSong].skip(-skip);
   if(key == 'F' || key == 'f')playlist[currentSong].skip(skip);
-  //if (key == 'E'|| key == 'e')skip = 20000;
- // if (key == 'D'|| key == 'd')skip = 10000;
-//  if (key == 'E'|| key =='e'){
-// if(skip==10000) { skip = playlist[currentSong].length()*0.10);
-//}else{
-//    skip=5000  }
-//}
+if (key == 'E'|| key == 'e')skip = 20000;
+if (key == 'D'|| key == 'd')skip = 10000;
+ if (key == 'E'|| key =='e'){
+if(skip==10000) { skip = playlist[currentSong].length()*0.10);
+}else{
+    skip=5000  }
+}
+
+if(  )
 }//END keyPressed
 //
 void mousePressed() {
