@@ -83,10 +83,7 @@ void keyPressed() {
       playlist[currentSong].play();
     }
   } //END play pause button
-// Mute Button
-if(key == 'U' || key == 'u'){ playlist[currentSong].mute};
-if(key == 'J' || key == 'j') { playlist[currentSong].unmute};
-//
+
   if ( key =='L' || key == 'l') {
     playlist[currentSong].loop(1);
     looping = true;
