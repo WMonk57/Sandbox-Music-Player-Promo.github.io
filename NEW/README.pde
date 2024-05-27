@@ -51,7 +51,7 @@ void setup() {
 //
 void draw() {
   println("song position", playlist[currentSong].position(), "song length", playlist[currentSong].length());
-
+  println (playlist[currentSong].isMuted());
 
   //  playlist[currentSong].loop(0);
 
@@ -61,6 +61,13 @@ void draw() {
   if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
   if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
   //
+if (playlist[currentSong].isMuted()) {
+  if (playlist[currentSong].isPlaying()) 
+  playlist[currentSong].mute();
+} else {
+  playlist[currentSong].unmute();
+}
+  
 
   if ( playlist[currentSong].isPlaying() ) {
     //Empty IF, TRUE
@@ -77,6 +84,7 @@ void draw() {
 }// End Draw
 //
 void keyPressed() {
+  
   if ( key == 'P' || key == 'p' ) { //play pause button feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //
     if ( playlist[currentSong].isPlaying()) {
@@ -85,6 +93,15 @@ void keyPressed() {
       playlist[currentSong].play();
     }
   } //END play pause button
+ // if(key == 'U' || key == 'u') playlist[currentSong].mute;
+//if (key == 'J' || key == 'j') playlist[currentSong].unmute;
+if ( key == 'M' || key == 'm') { 
+  if (playlist[currentSong].isMuted()) playlist[currentSong].unmute();
+} else { 
+  playlist[currentSong].mute();
+}
+if (playlist[currentSong].isMuted())
+  
   if ( key =='L' || key == 'l') {
     playlist[currentSong].loop(1);
     looping = true;

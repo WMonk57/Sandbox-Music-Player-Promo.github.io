@@ -131,7 +131,6 @@ void setup() {
   doorclose =  pathTest1 + doorClosing + extension2;
   DoorClosed = loadImage(doorclose);
   //
-  String
   //
   //aspect ratio
   float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight;
