@@ -29,9 +29,10 @@ color Black = #000000;
 color foregroundColor;
 color green =#3FEA07;
 boolean whiteMode = false;
+boolean albumCover3 = false;
 color purple= #A20AF5;
 String exit = "EXIT";
-String currentSong = "Song Name Goes HERE";
+String currentSong1 = "Song Name Goes HERE";
 String albumCover = "Album Cover Goes HERE";
 String timeLeft = " Time remaining goes HERE";
 PImage backgroundImage;
@@ -41,6 +42,8 @@ color backgroundColour;
 color foregroundColour;
 String albumCoverPath ;
 PImage albumCover1;
+String albumCoverPath2;
+PImage albumCover2;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
 PImage playButton1;
 String playButtonPath;
@@ -54,9 +57,21 @@ String DoorOpen;
 PImage exitOpenDoor;
 String doorclose;
 PImage DoorClosed;
-//
+int numberSoundEffects = 2;
+int numberMusicSongs = 4;
+AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
+AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
+//AudioPlayer soundEffects2;
+//AudioPlayer musicsound1;
+int currentSong = 0;
+Boolean looping = false;
+String test = "1"; //  
+AudioMetaData[] playlistMetaData;
+
 void setup() {
   println("HelloWorld");
+
+playlistMetaData[0] = playlist[0].getMetaData;
 
   //Concatenation & Inspecting Varianles with Character Escapes
   println("Width: "+width, "\tHeight"+height, "\tDisplay Width"+displayWidth, "\tDisplay Height"+displayHeight);
@@ -98,11 +113,21 @@ void setup() {
   soundEffects1 = minim.loadFile( path );
   soundEffects2 = minim.loadFile( path3);
   //playList1 = minim.loadFile( path );
-
+ 
+  String newsroom = "Newsroom";
+  String musicpath = "../Music/";
+  String pathNewsRoomMUSIC = sketchPath ( musicpath+newsroom+extension);
+  playlist[0] = minim.loadFile(pathNewsRoomMUSIC);
+  println ( musicpath + newsroom + extension);
+  
   String MtoM = "Minutes_to_Midnight_cover" ;
   String pathway3 = "../Images/";
   albumCoverPath = pathway3 + MtoM + extension2 ;
-  albumCover1= loadImage( albumCoverPath );
+ // albumCover1= loadImage( albumCoverPath );
+  
+  String DoomGuy = "Void_Warrior_Absenz_29_-_Outfit_-_Fortnite.JPEG";
+  albumCoverPath2 = pathway3 + DoomGuy;
+ // albumCover2 = loadImage(albumCoverPath2);
   
   String PLAY = "download";
   String pathway4 = "../Images/";
@@ -211,6 +236,11 @@ void draw() {
   } else {
     tint(255, 255, 255, 0); //no blue;
   }
+  if ( albumCover3 == false){
+    albumCover1 = loadImage ( albumCoverPath );
+  } else { 
+    albumCover1 = loadImage(  albumCoverPath2);
+  }
   //
 
   //
@@ -246,7 +276,7 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   textAlign(CENTER, CENTER);
   size = 25;
   textFont(generalFont, size);
-  text (currentSong, currentSongX, currentSongY, currentSongWidth, currentSongHeight);
+  text (currentSong1, currentSongX, currentSongY, currentSongWidth, currentSongHeight);
   //
   //
   fill(Orange);//Ink
@@ -309,6 +339,37 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   // albumCoverCENTER,  instead of x            Add adjusted for width and height.
   //
   fill(foregroundColor);
+  
+    println("song position", playlist[currentSong].position(), "song length", playlist[currentSong].length());
+  println (playlist[currentSong].isMuted());
+
+  //  playlist[currentSong].loop(0);
+
+  if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
+  if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+  println(looping);
+  if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
+  if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
+  //
+if (playlist[currentSong].isMuted()) {
+  if (playlist[currentSong].isPlaying()) 
+  playlist[currentSong].mute();
+} else {
+  playlist[currentSong].unmute();
+}
+
+   if ( playlist[currentSong].isPlaying() ) {
+    //Empty IF, TRUE
+  } else if ( looping== false && !playlist[currentSong].isPlaying() && playlist[currentSong].length() < 60000 ) {
+    playlist [currentSong].rewind();
+  } else if ( looping== false && !playlist[currentSong].isPlaying() && ( playlist[currentSong].position() > playlist[currentSong].length()*0.75 ) ) {
+    //true if 75% player restart
+    //currentSong at end of FILE
+    playlist[currentSong].rewind();
+    //currentSong = currentSong + 1; //currentSong++; currentSong+=1
+    // playlist[currentSong].play();
+  } else {
+  }
 } //End draw
 //
 void keyPressed() {        //Listener
@@ -336,9 +397,56 @@ void keyPressed() {        //Listener
      } else {
      whiteMode = false; //Dark Mode ON, no darkMode Boolean required
      }*/
+      if ( key == 'P' || key == 'p' ) { //play pause button feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //
+    if ( playlist[currentSong].isPlaying()) {
+      playlist[currentSong].pause();
+    } else {
+      playlist[currentSong].play();
+    }
+  } //END play pause button
+ // if(key == 'U' || key == 'u') playlist[currentSong].mute;
+//if (key == 'J' || key == 'j') playlist[currentSong].unmute;
+if ( key == 'M' || key == 'm') { 
+  if (playlist[currentSong].isMuted()) playlist[currentSong].unmute();
+} else { 
+  playlist[currentSong].mute();
+}
+if (playlist[currentSong].isMuted())
+  
+  if ( key =='L' || key == 'l') {
+    playlist[currentSong].loop(1);
+    looping = true;
+  } // END LOOP ONCE
+  if (key == 'I' || key == 'i') {
+    playlist[currentSong].loop();
+    looping = true;
+  } // END LOOP INFINITY
+  if (key == 'O' || key == 'o' ) {
+   playlist[currentSong] .pause();
+   playlist[currentSong] .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
+} // END STOP BUTTON 
+  //
+  int skip = 10000;//Local
+  
+  if(key == 'R' || key == 'r')playlist[currentSong].skip(-skip);
+  if(key == 'F' || key == 'f')playlist[currentSong].skip(skip);
+  //if (key == 'E'|| key == 'e')skip = 20000;
+ // if (key == 'D'|| key == 'd')skip = 10000;
+//  if (key == 'E'|| key =='e'){
+// if(skip==10000) { skip = playlist[currentSong].length()*0.10);
+//}else{
+//    skip=5000  }
+//}
   }
   //End Day Mode
   //End Night Mode
+  
+  if(key == 'A' || key =='a'){
+    albumCover3 = true;
+  }else{
+  albumCover3 = false; 
+}
 } //End keyPressed
 //
 void mousePressed() {      //Listener
