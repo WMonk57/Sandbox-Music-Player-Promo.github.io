@@ -32,7 +32,7 @@ boolean whiteMode = false;
 boolean albumCover3 = false;
 color purple= #A20AF5;
 String exit = "EXIT";
-String currentSong1 = "Song Name Goes HERE";
+//String currentSong1 = "Song Name Goes HERE";
 String albumCover = "Album Cover Goes HERE";
 String timeLeft = " Time remaining goes HERE";
 PImage backgroundImage;
@@ -65,13 +65,10 @@ AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
 //AudioPlayer musicsound1;
 int currentSong = 0;
 Boolean looping = false;
-String test = "1"; //  
-AudioMetaData[] playlistMetaData;
+AudioMetaData[] playlistMetaData = new AudioMetaData [ numberMusicSongs ];
 
 void setup() {
   println("HelloWorld");
-
-playlistMetaData[0] = playlist[0].getMetaData;
 
   //Concatenation & Inspecting Varianles with Character Escapes
   println("Width: "+width, "\tHeight"+height, "\tDisplay Width"+displayWidth, "\tDisplay Height"+displayHeight);
@@ -118,6 +115,7 @@ playlistMetaData[0] = playlist[0].getMetaData;
   String musicpath = "../Music/";
   String pathNewsRoomMUSIC = sketchPath ( musicpath+newsroom+extension);
   playlist[0] = minim.loadFile(pathNewsRoomMUSIC);
+   playlistMetaData[0] = playlist[0].getMetaData();
   println ( musicpath + newsroom + extension);
   
   String MtoM = "Minutes_to_Midnight_cover" ;
@@ -125,7 +123,7 @@ playlistMetaData[0] = playlist[0].getMetaData;
   albumCoverPath = pathway3 + MtoM + extension2 ;
  // albumCover1= loadImage( albumCoverPath );
   
-  String DoomGuy = "Void_Warrior_Absenz_29_-_Outfit_-_Fortnite.JPEG";
+  String DoomGuy = "Friendly_Fire.jpg";
   albumCoverPath2 = pathway3 + DoomGuy;
  // albumCover2 = loadImage(albumCoverPath2);
   
@@ -274,9 +272,10 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   rect(currentSongX, currentSongY, currentSongWidth, currentSongHeight);
   fill(purple);
   textAlign(CENTER, CENTER);
-  size = 25;
+  int size = 25;
   textFont(generalFont, size);
-  text (currentSong1, currentSongX, currentSongY, currentSongWidth, currentSongHeight);
+  println ( playlistMetaData[0].title());
+  text (playlistMetaData[0].title(), currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
   //
   //
   fill(Orange);//Ink
