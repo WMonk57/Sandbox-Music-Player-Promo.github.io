@@ -66,6 +66,12 @@ AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
 int currentSong = 0;
 Boolean looping = false;
 AudioMetaData[] playlistMetaData = new AudioMetaData [ numberMusicSongs ];
+String StartButton;
+PImage playButton2;
+String REwind2;
+PImage REWIND2;
+String fastforward2;
+PImage FASTF2;
 
 void setup() {
   println("HelloWorld");
@@ -153,6 +159,18 @@ void setup() {
   String pathTest1 = "../Images/";
   doorclose =  pathTest1 + doorClosing + extension2;
   DoorClosed = loadImage(doorclose);
+ 
+  String Start2 = "download2.jpg";
+  StartButton = pathway4 + Start2 ;
+  playButton2 = loadImage(StartButton);
+  //
+  String ReWiNd = "5628020121.png";
+  REwind2 = pathway4 + ReWiNd;
+  REWIND2 = loadImage(REwind2);
+  
+  String FF = "562802012.png";
+  fastforward2= pathway4 + FF;
+  FASTF2 = loadImage(fastforward2);
   //
   //
   //aspect ratio
@@ -286,14 +304,40 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   fill(green);
   rect(startX, startY, startWidth, startHeight);
   image(playButton1, startX, startY, startWidth, startHeight);
-
+if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startHeight ) {
+    fill(Orange);
+    image(playButton2, startX, startY, startWidth, startHeight);
+    fill(foregroundColor);
+  } else {
+    fill(purple);
+image(playButton1, startX, startY, startWidth, startHeight);
+  } 
+  
   fill(green);
   rect(rewindX, rewindY, rewindWidth, rewindHeight);
-  image(REWIND,rewindX, rewindY, rewindWidth, rewindHeight);
-
+  //
+if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY<rewindY+rewindHeight ) {
+    fill(Orange);
+image(REWIND2,rewindX, rewindY, rewindWidth, rewindHeight);
+    fill(foregroundColor);
+  } else {
+    fill(purple);
+image(REWIND,rewindX, rewindY, rewindWidth, rewindHeight);
+  } 
+  //
+  //
   fill(green);
   rect(fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
   image(FastF, fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
+  if (mouseX>fastForwardX && mouseX<fastForwardX+fastForwardWidth && mouseY>fastForwardY && mouseY<fastForwardY+fastForwardHeight ) {
+    fill(Orange);
+image(FASTF2, fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
+    fill(foregroundColor);
+  } else {
+    fill(purple);  
+  image(FastF, fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
+  }
+  
   // fill(purple);
   // rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
   // fill(green);
@@ -456,8 +500,27 @@ void mousePressed() {      //Listener
   }
   if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY< rewindY+rewindHeight)
   {
-    //.rewind();
+    playlist[currentSong].rewind();
+    playlist[currentSong].pause();
   }
+  if (mouseX>fastForwardX && mouseX<fastForwardX+fastForwardWidth && mouseY>fastForwardY && mouseY<fastForwardY+fastForwardWidth)
+  {
+    playlist[currentSong].skip(10000);
+  }
+  
+  //
+  if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startWidth)
+  { if( playlist[currentSong].isPlaying())
+    playlist[currentSong].pause();
+  } else {
+    playlist[currentSong].play();
+  }
+ 
+  if(mouseX>settingsGearX && mouseX<settingsGearX+settingsGearWidth && mouseY>settingsGearY && mouseY<startY+settingsGearWidth)
+  { 
+    
+  }
+  //
 } //End mousePressed
 //
 //rewindX, rewindY, rewindWidth, rewindHeight
