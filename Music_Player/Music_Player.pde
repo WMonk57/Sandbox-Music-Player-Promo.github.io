@@ -72,6 +72,8 @@ String REwind2;
 PImage REWIND2;
 String fastforward2;
 PImage FASTF2;
+String gear2;
+PImage GEAR2;
 
 void setup() {
   println("HelloWorld");
@@ -117,12 +119,22 @@ void setup() {
   soundEffects2 = minim.loadFile( path3);
   //playList1 = minim.loadFile( path );
  
-  String newsroom = "Newsroom";
+  String Start_Your_Engines= "Start_Your_Engines";
   String musicpath = "../Music/";
-  String pathNewsRoomMUSIC = sketchPath ( musicpath+newsroom+extension);
-  playlist[0] = minim.loadFile(pathNewsRoomMUSIC);
-   playlistMetaData[0] = playlist[0].getMetaData();
-  println ( musicpath + newsroom + extension);
+  String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension);
+  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
+
+   playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
+  println ( musicpath + Start_Your_Engines + extension);
+  
+  //String Beat_Your_Competition = "Beat_Your_Competition";
+  //String pathBeat_Your_Competition= sketchPath ( musicpath+Beat_Your_Competition+extension);
+  // playlist[currentSong+1] = minim.loadFile(pathBeat_Your_Competition);
+   
+   
+   String Ghost_Walk = "Ghost_Walk"; 
+   String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
+   playlist[currentSong++] = minim.loadFile(pathGhost_Walk);
   
   String MtoM = "Minutes_to_Midnight_cover" ;
   String pathway3 = "../Images/";
@@ -171,6 +183,11 @@ void setup() {
   String FF = "562802012.png";
   fastforward2= pathway4 + FF;
   FASTF2 = loadImage(fastforward2);
+  
+ //
+ String Gear2 = "images1.jfif.ca.jpg";
+ gear2 = pathway4 + Gear2;
+ GEAR2 = loadImage(gear2);
   //
   //
   //aspect ratio
@@ -232,6 +249,7 @@ void setup() {
     backgroundImage = loadImage( pathDarkBackgroundImage );
   }
   //
+  
 } //End setup
 //
 void draw() {
@@ -373,7 +391,15 @@ image(FASTF2, fastForwardX, fastForwardY, fastForwardWidth, fastForwardHeight);
   fill(green);
   rect(settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
   image(Gear, settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
-
+ if (mouseX>settingsGearX && mouseX<settingsGearX+settingsGearWidth && mouseY>settingsGearY && mouseY<settingsGearY+settingsGearHeight ) {
+    fill(Orange);
+   image(GEAR2, settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
+  } else {
+    fill(purple);
+image(Gear, settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight);
+  }
+  
+  
   fill(Aqua);
   rect(volumeBarX, volumeBarY, volumeBarWidth, volumeBarHeight);
 
