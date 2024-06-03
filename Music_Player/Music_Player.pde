@@ -58,7 +58,7 @@ PImage exitOpenDoor;
 String doorclose;
 PImage DoorClosed;
 int numberSoundEffects = 2;
-int numberMusicSongs = 4;
+int numberMusicSongs = 2;
 AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
 AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
 //AudioPlayer soundEffects2;
@@ -117,20 +117,19 @@ void setup() {
   // println( path );
   soundEffects1 = minim.loadFile( path );
   soundEffects2 = minim.loadFile( path3);
-  //playList1 = minim.loadFile( path );
-  playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
+  playlist1 = minim.loadFile( path );
+ // playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
   
   String musicpath = "../Music/";
   String Start_Your_Engines= "Start_Your_Engines";
   String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension); 
-  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
-   playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
+  playlist[currentSong+1] = minim.loadFile(pathStart_Your_EnginesMUSIC);
  // println ( musicpath + Start_Your_Engines + extension);
  
    String Ghost_Walk = "Ghost_Walk"; 
    String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
    playlist[currentSong+2]= minim.loadFile(pathGhost_Walk);
-println( "Random:", int(random(-1,8)));
+//println( "Random:", int(random(-1,8)));
   
   
   String MtoM = "Minutes_to_Midnight_cover" ;
@@ -513,6 +512,7 @@ if (playlist[currentSong].isMuted())
   }else{
   albumCover3 = false; 
 }
+if ( key==' '|| key==' ') currentSong=  int(random(0, 2));
 } //End keyPressed
 //
 void mousePressed() {      //Listener
