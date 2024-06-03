@@ -118,23 +118,20 @@ void setup() {
   soundEffects1 = minim.loadFile( path );
   soundEffects2 = minim.loadFile( path3);
   //playList1 = minim.loadFile( path );
- 
-  String Start_Your_Engines= "Start_Your_Engines";
-  String musicpath = "../Music/";
-  String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension);
-  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
-
-   playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
-  println ( musicpath + Start_Your_Engines + extension);
+  playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
   
-  //String Beat_Your_Competition = "Beat_Your_Competition";
-  //String pathBeat_Your_Competition= sketchPath ( musicpath+Beat_Your_Competition+extension);
-  // playlist[currentSong+1] = minim.loadFile(pathBeat_Your_Competition);
-   
-   
+  String musicpath = "../Music/";
+  String Start_Your_Engines= "Start_Your_Engines";
+  String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension); 
+  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
+   playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
+ // println ( musicpath + Start_Your_Engines + extension);
+ 
    String Ghost_Walk = "Ghost_Walk"; 
    String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
-   playlist[currentSong++] = minim.loadFile(pathGhost_Walk);
+   playlist[currentSong+2]= minim.loadFile(pathGhost_Walk);
+println( "Random:", int(random(-1,8)));
+  
   
   String MtoM = "Minutes_to_Midnight_cover" ;
   String pathway3 = "../Images/";
@@ -310,8 +307,8 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   textAlign(CENTER, CENTER);
   int size = 25;
   textFont(generalFont, size);
-  println ( playlistMetaData[0].title());
-  text (playlistMetaData[0].title(), currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
+ println ( playlistMetaData[currentSong].title());
+  text (playlistMetaData[currentSong].title(), currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
   //
   //
   fill(Orange);//Ink
