@@ -59,8 +59,8 @@ String doorclose;
 PImage DoorClosed;
 int numberSoundEffects = 2;
 int numberMusicSongs = 2;
-AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
-AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
+//AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
+//AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
 //AudioPlayer soundEffects2;
 //AudioPlayer musicsound1;
 int currentSong = 0;
@@ -74,6 +74,11 @@ String fastforward2;
 PImage FASTF2;
 String gear2;
 PImage GEAR2;
+
+String[] filePathNameMusic = new String[numberMusicSongs];
+String[] filePathNameSoundEffect = new String [numberSoundEffects];
+AudioPlayer playlist;
+AudioPlayer soundEffect;
 
 void setup() {
   println("HelloWorld");
@@ -89,7 +94,7 @@ void setup() {
   appWidth = displayWidth;
   appHeight = displayHeight;
   //landscape is HARDCODED
-  //println(appWidth, appHeight);
+  println(appWidth, appHeight);
   //display Geometry: landscape, portait, square
   String displayInstructions =( appWidth >= appHeight ) ? "Correct Way" : "!!!!WRONG WAY!!!!" ;
   println(displayInstructions);
@@ -123,12 +128,12 @@ void setup() {
   String musicpath = "../Music/";
   String Start_Your_Engines= "Start_Your_Engines";
   String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension); 
-  playlist[currentSong+1] = minim.loadFile(pathStart_Your_EnginesMUSIC);
+  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
  // println ( musicpath + Start_Your_Engines + extension);
  
    String Ghost_Walk = "Ghost_Walk"; 
    String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
-   playlist[currentSong+2]= minim.loadFile(pathGhost_Walk);
+   playlist[currentSong+=1]= minim.loadFile(pathGhost_Walk);
 //println( "Random:", int(random(-1,8)));
   
   
@@ -245,7 +250,8 @@ void setup() {
     backgroundImage = loadImage( pathDarkBackgroundImage );
   }
   //
-  
+    println(currentSong, filePathNameMusic[currentSong]);
+  playlist =  minim.loadFile( filePathNameMusic[currentSong] ); // "" is compiler error
 } //End setup
 //
 void draw() {
@@ -512,7 +518,9 @@ if (playlist[currentSong].isMuted())
   }else{
   albumCover3 = false; 
 }
-if ( key==' '|| key==' ') currentSong=  int(random(0, 2));
+if ( key==' '|| key==' ') currentSong =  int(random(0, numberMusicSongs));
+
+
 } //End keyPressed
 //
 void mousePressed() {      //Listener
