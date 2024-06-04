@@ -59,10 +59,6 @@ String doorclose;
 PImage DoorClosed;
 int numberSoundEffects = 2;
 int numberMusicSongs = 2;
-//AudioPlayer[] playlist = new AudioPlayer [ numberMusicSongs ];
-//AudioPlayer[] soundEffects = new AudioPlayer [ numberSoundEffects] ;
-//AudioPlayer soundEffects2;
-//AudioPlayer musicsound1;
 int currentSong = 0;
 Boolean looping = false;
 AudioMetaData[] playlistMetaData = new AudioMetaData [ numberMusicSongs ];
@@ -123,19 +119,20 @@ void setup() {
   soundEffects1 = minim.loadFile( path );
   soundEffects2 = minim.loadFile( path3);
   playlist1 = minim.loadFile( path );
- // playlistMetaData[currentSong] = playlist[currentSong].getMetaData();
+  //playlistMetaData = playlist.getMetaData();
   
   String musicpath = "../Music/";
   String Start_Your_Engines= "Start_Your_Engines";
-  String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension); 
-  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
+//  String pathStart_Your_EnginesMUSIC = sketchPath ( musicpath+Start_Your_Engines+extension); 
+//  playlist[currentSong] = minim.loadFile(pathStart_Your_EnginesMUSIC);
  // println ( musicpath + Start_Your_Engines + extension);
  
    String Ghost_Walk = "Ghost_Walk"; 
-   String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
-   playlist[currentSong+=1]= minim.loadFile(pathGhost_Walk);
+ //  String pathGhost_Walk = sketchPath ( musicpath+Ghost_Walk+extension);
+//   playlist[currentSong+=1]= minim.loadFile(pathGhost_Walk);
 //println( "Random:", int(random(-1,8)));
-  
+  filePathNameMusic[currentSong] = musicpath+Start_Your_Engines+extension;
+  filePathNameMusic[currentSong+=1] = musicpath+Ghost_Walk+extension;
   
   String MtoM = "Minutes_to_Midnight_cover" ;
   String pathway3 = "../Images/";
@@ -251,6 +248,7 @@ void setup() {
   }
   //
     println(currentSong, filePathNameMusic[currentSong]);
+    currentSong = numberMusicSongs-numberMusicSongs;
   playlist =  minim.loadFile( filePathNameMusic[currentSong] ); // "" is compiler error
 } //End setup
 //
@@ -312,8 +310,8 @@ image( DoorClosed, exitX, exitY, exitWidth, exitHeight );
   textAlign(CENTER, CENTER);
   int size = 25;
   textFont(generalFont, size);
- println ( playlistMetaData[currentSong].title());
-  text (playlistMetaData[currentSong].title(), currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
+ //println ( playlistMetaData[currentSong].title());
+ // text (playlistMetaData[currentSong].title(), currentSongX, currentSongY, currentSongWidth, currentSongHeight); 
   //
   //
   fill(Orange);//Ink
@@ -411,32 +409,33 @@ image(Gear, settingsGearX, settingsGearY, settingsGearWidth, settingsGearHeight)
   //
   fill(foregroundColor);
   
-    println("song position", playlist[currentSong].position(), "song length", playlist[currentSong].length());
-  println (playlist[currentSong].isMuted());
+    println("song position", playlist.position(), "song length", playlist.length());
+  println (playlist.isMuted());
 
   //  playlist[currentSong].loop(0);
 
-  if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()!=-1 ) println("There are", playlist[currentSong].loopCount(), "loops left.");
-  if ( playlist[currentSong].isLooping() && playlist[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+  if ( playlist.isLooping() && playlist.loopCount()!=-1 ) println("There are", playlist.loopCount(), "loops left.");
+  if ( playlist.isLooping() && playlist.loopCount()==-1 ) println("Looping Infinitely");
   println(looping);
-  if ( !playlist[currentSong].isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
-  if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
+  if ( !playlist.isPlaying() ) println( "nothing is playing, PICK A SONG NOW!!!!!!!!!!!!!!!!!!" );
+  if ( playlist.isPlaying() && !playlist.isLooping() ) println("Play Once");
   //
-if (playlist[currentSong].isMuted()) {
-  if (playlist[currentSong].isPlaying()) 
-  playlist[currentSong].mute();
+if (playlist.isMuted()) {
+  if (playlist.isPlaying()) 
+  playlist.mute();
 } else {
-  playlist[currentSong].unmute();
+  playlist.unmute();
 }
 
-   if ( playlist[currentSong].isPlaying() ) {
+   if ( playlist.isPlaying() ) {
     //Empty IF, TRUE
-  } else if ( looping== false && !playlist[currentSong].isPlaying() && playlist[currentSong].length() < 60000 ) {
-    playlist [currentSong].rewind();
-  } else if ( looping== false && !playlist[currentSong].isPlaying() && ( playlist[currentSong].position() > playlist[currentSong].length()*0.75 ) ) {
+    //if (  ) {}
+  } else if ( looping== false && !playlist.isPlaying() && playlist.length() < 60000 ) {
+    playlist .rewind();
+  } else if ( looping== false && !playlist.isPlaying() && ( playlist.position() > playlist.length()*0.75 ) ) {
     //true if 75% player restart
     //currentSong at end of FILE
-    playlist[currentSong].rewind();
+    playlist.rewind();
     //currentSong = currentSong + 1; //currentSong++; currentSong+=1
     // playlist[currentSong].play();
   } else {
@@ -470,38 +469,38 @@ void keyPressed() {        //Listener
      }*/
       if ( key == 'P' || key == 'p' ) { //play pause button feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //
-    if ( playlist[currentSong].isPlaying()) {
-      playlist[currentSong].pause();
+    if ( playlist.isPlaying()) {
+      playlist.pause();
     } else {
-      playlist[currentSong].play();
+      playlist.play();
     }
   } //END play pause button
  // if(key == 'U' || key == 'u') playlist[currentSong].mute;
 //if (key == 'J' || key == 'j') playlist[currentSong].unmute;
 if ( key == 'M' || key == 'm') { 
-  if (playlist[currentSong].isMuted()) playlist[currentSong].unmute();
+  if (playlist.isMuted()) playlist.unmute();
 } else { 
-  playlist[currentSong].mute();
+  playlist.mute();
 }
-if (playlist[currentSong].isMuted())
+if (playlist.isMuted())
   
   if ( key =='L' || key == 'l') {
-    playlist[currentSong].loop(1);
+    playlist.loop(1);
     looping = true;
   } // END LOOP ONCE
   if (key == 'I' || key == 'i') {
-    playlist[currentSong].loop();
+    playlist.loop();
     looping = true;
   } // END LOOP INFINITY
   if (key == 'O' || key == 'o' ) {
-   playlist[currentSong] .pause();
-   playlist[currentSong] .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
+   playlist .pause();
+   playlist .rewind();// ALERT ALERT affects loop amount and makes it break ALERT ALERT
 } // END STOP BUTTON 
   //
   int skip = 10000;//Local
   
-  if(key == 'R' || key == 'r')playlist[currentSong].skip(-skip);
-  if(key == 'F' || key == 'f')playlist[currentSong].skip(skip);
+  if(key == 'R' || key == 'r')playlist.skip(-skip);
+  if(key == 'F' || key == 'f')playlist.skip(skip);
   //if (key == 'E'|| key == 'e')skip = 20000;
  // if (key == 'D'|| key == 'd')skip = 10000;
 //  if (key == 'E'|| key =='e'){
@@ -518,7 +517,13 @@ if (playlist[currentSong].isMuted())
   }else{
   albumCover3 = false; 
 }
-if ( key==' '|| key==' ') currentSong =  int(random(0, numberMusicSongs));
+if ( key=='M'|| key=='m') {currentSong =  int(random(0, numberMusicSongs));
+  println(currentSong, filePathNameMusic[currentSong]);
+playlist.pause();
+playlist.rewind();
+  playlist =  minim.loadFile( filePathNameMusic[currentSong] ); // "" is compiler error
+  playlist.play();
+} 
 
 
 } //End keyPressed
@@ -531,20 +536,20 @@ void mousePressed() {      //Listener
   }
   if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY< rewindY+rewindHeight)
   {
-    playlist[currentSong].rewind();
-    playlist[currentSong].pause();
+    playlist.rewind();
+    playlist.pause();
   }
   if (mouseX>fastForwardX && mouseX<fastForwardX+fastForwardWidth && mouseY>fastForwardY && mouseY<fastForwardY+fastForwardWidth)
   {
-    playlist[currentSong].skip(10000);
+    playlist.skip(10000);
   }
   
   //
   if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startWidth)
-  { if( playlist[currentSong].isPlaying())
-    playlist[currentSong].pause();
+  { if( playlist.isPlaying())
+    playlist.pause();
   } else {
-    playlist[currentSong].play();
+    playlist.play();
   }
  
   if(mouseX>settingsGearX && mouseX<settingsGearX+settingsGearWidth && mouseY>settingsGearY && mouseY<startY+settingsGearWidth)
