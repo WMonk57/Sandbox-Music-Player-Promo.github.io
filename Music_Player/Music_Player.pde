@@ -439,6 +439,10 @@ if (playlist.isMuted()) {
     //currentSong = currentSong + 1; //currentSong++; currentSong+=1
     // playlist[currentSong].play();
   } else {
+     /* Future coding
+     currentSong = currentSong + 1; //currentSong++; currentSong+=1
+     playlist.play();
+     */
   }
 } //End draw
 //
@@ -529,19 +533,37 @@ playlist.rewind();
 } //End keyPressed
 //
 void mousePressed() {      //Listener
-
+int skip = 10000;
   if ( mouseX>exitX && mouseX<exitX+exitWidth && mouseY>exitY && mouseY<exitY+exitHeight )
   {
     soundeffect_1();
   }
   if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY< rewindY+rewindHeight)
   {
+    if (skip == 10000)
+    
     playlist.rewind();
     playlist.pause();
   }
   if (mouseX>fastForwardX && mouseX<fastForwardX+fastForwardWidth && mouseY>fastForwardY && mouseY<fastForwardY+fastForwardWidth)
   {
-    playlist.skip(10000);
+    if (playlist.position()< 10000); 
+    if (playlist.position()>= 10000 && playlist.position()<=playlist.length()*0.35)playlist.skip(skip); 
+    if (playlist.position()> playlist.length()*0.35  );{
+      println(currentSong, filePathNameMusic[currentSong]);
+     playlist.pause();
+      playlist.rewind();
+      if ( currentSong>=numberMusicSongs-1) {
+      currentSong=0;
+    } else {
+    currentSong++; 
+  }
+      playlist =  minim.loadFile( filePathNameMusic[currentSong+=1] ); // "" is compiler error
+      playlist.play();
+     
+  println(currentSong, filePathNameMusic[currentSong]);
+    }
+    //playlist.skip(skip);
   }
   
   //
