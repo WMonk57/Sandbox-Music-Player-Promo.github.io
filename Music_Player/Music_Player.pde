@@ -553,6 +553,7 @@ if (playlist.isMuted())
   //End Night Mode
   
   if(key == 'A' || key =='a'){
+    if(albumCover3==false);
     albumCover3 = true;
   }else{
   albumCover3 = false; 
