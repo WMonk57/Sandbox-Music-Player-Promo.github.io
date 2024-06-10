@@ -276,15 +276,17 @@ int skip = 10000;
       println(currentSong, filePathNameMusic[currentSong]);
      playlist.pause();
       playlist.rewind();
+      SKIP=true;
       if ( currentSong>=numberMusicSongs-1) {
       currentSong=0;
     } else {
+      if(SKIP==true)
     currentSong++; 
      playlist =  minim.loadFile( filePathNameMusic[currentSong+=1] ); // "" is compiler error
       playlist.play();
   }
 }else{ 
-  SKIP=false;
+ playlist.play();
 }
      
   /* background(0); // day mode light mode ON /OFF
@@ -581,25 +583,31 @@ int skip = 10000;
   }
   if (mouseX>fastForwardX && mouseX<fastForwardX+fastForwardWidth && mouseY>fastForwardY && mouseY<fastForwardY+fastForwardWidth)
   {
-    SKIP=true;
-    if (playlist.position()< 10000); 
+      if (playlist.isPlaying()){  if (playlist.position()< 10000); 
     if (playlist.position()>= 10000 && playlist.position()<=playlist.length()*0.35)playlist.skip(skip); 
-    if (playlist.position()> playlist.length()*0.35  );{
+    if (playlist.position()> playlist.length()*0.35  );
       println(currentSong, filePathNameMusic[currentSong]);
      playlist.pause();
       playlist.rewind();
+      SKIP=true;
       if ( currentSong>=numberMusicSongs-1) {
       currentSong=0;
     } else {
+      if(SKIP==true)
     currentSong++; 
-  }
-      playlist =  minim.loadFile( filePathNameMusic[currentSong+=1] ); // "" is compiler error
+     playlist =  minim.loadFile( filePathNameMusic[currentSong+=1] ); // "" is compiler error
       playlist.play();
-     
-  println(currentSong, filePathNameMusic[currentSong]);
-    }
-    //playlist.skip(skip);
   }
+}else{ 
+ playlist.play();
+}
+  }
+      
+     
+  //println(currentSong, filePathNameMusic[currentSong]);
+    
+    //playlist.skip(skip);
+
   
   //
   if (mouseX>startX && mouseX<startX+startWidth && mouseY>startY && mouseY<startY+startHeight)
