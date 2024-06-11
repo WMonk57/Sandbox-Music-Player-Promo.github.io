@@ -76,6 +76,7 @@ String[] filePathNameMusic = new String[numberMusicSongs];
 String[] filePathNameSoundEffect = new String [numberSoundEffects];
 AudioPlayer playlist;
 AudioPlayer soundEffect;
+String link =  "https://wmonk57.github.io/Sandbox-Music-Player-Promo.github.io/" ;
 
 void setup() {
   println("HelloWorld");
@@ -104,7 +105,7 @@ void setup() {
   String path = sketchPath( pathwaySoundEffects+exitSound+extension );
   String clownCar = "clown-car-made-with-Voicemod";
   String path3 = sketchPath( pathwaySoundEffects + clownCar + extension);
-
+  
 
   //
   String extension2 = ".jpg";
@@ -622,7 +623,7 @@ int skip = 10000;
  
   if(mouseX>settingsGearX && mouseX<settingsGearX+settingsGearWidth && mouseY>settingsGearY && mouseY<startY+settingsGearWidth)
   { 
-   // link( https://wmonk57.github.io/Sandbox-Music-Player-Promo.github.io/);
+   link(link);
   }
   //
 } //End mousePressed
